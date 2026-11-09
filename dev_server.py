@@ -15,3 +15,4 @@ if __name__ == '__main__':
     with socketserver.TCPServer(("", PORT), NoCacheHTTPRequestHandler) as httpd:
         print(f"Dev server running at http://localhost:{PORT} (Zero-Cache Enabled)")
         httpd.serve_forever()
+
