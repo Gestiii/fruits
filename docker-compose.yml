@@ -9,4 +9,6 @@ services:
       - "8080:80"
     environment:
       - NODE_ENV=production
+      - POSTHOG_PROJECT_TOKEN=${POSTHOG_PROJECT_TOKEN}
+      - POSTHOG_HOST=${POSTHOG_HOST}
 

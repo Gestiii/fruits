@@ -721,6 +721,10 @@
   <script src="js/app.js"></script>
   <script>
     function filterCatalog(type, btn) {
+      window.capturePostHogEvent("catalog_filtered", {
+        filter_type: type,
+      });
+
       document.querySelectorAll('.filter-btn').forEach(b => {
         b.classList.remove('btn-primary');
         b.classList.add('btn-secondary');

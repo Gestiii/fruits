@@ -11,5 +11,5 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", "printf 'window.POSTHOG_CONFIG = { apiKey: \"%s\", apiHost: \"%s\" };\\n' \"$POSTHOG_PROJECT_TOKEN\" \"$POSTHOG_HOST\" > /usr/share/nginx/html/posthog-config.js && nginx -g 'daemon off;'"]
 

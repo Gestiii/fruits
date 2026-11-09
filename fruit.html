@@ -360,18 +360,39 @@
 
     function handleBlendJuice() {
       const sweetness = document.getElementById("slider-sweetness").value;
+      window.capturePostHogEvent("juice_blended", {
+        fruit_id: currentFruit.id,
+        sweetness_percent: Number(sweetness),
+        ice_preference: selectedIce,
+      });
       window.showToast(`Blended fresh ${currentFruit.juice.name} (${sweetness}% sweetness, ${selectedIce} ice)!`, "success");
     }
 
     function handleOrderFeaturedJuice() {
+      window.capturePostHogEvent("fruit_ordered", {
+        fruit_id: currentFruit.id,
+        item_name: currentFruit.juice.name,
+        item_type: "juice",
+        order_source: "featured_item",
+      });
       window.showToast(`Ordered: ${currentFruit.juice.name} (${currentFruit.juice.price})!`, "success");
     }
 
     function handleTossSalad() {
+      window.capturePostHogEvent("salad_prepared", {
+        fruit_id: currentFruit.id,
+        dressing_preference: selectedDressing,
+      });
       window.showToast(`Tossed and plated fresh ${currentFruit.salad.name} with ${selectedDressing} dressing!`, "success");
     }
 
     function handleOrderFeaturedSalad() {
+      window.capturePostHogEvent("fruit_ordered", {
+        fruit_id: currentFruit.id,
+        item_name: currentFruit.salad.name,
+        item_type: "salad",
+        order_source: "featured_item",
+      });
       window.showToast(`Ordered: ${currentFruit.salad.name} (${currentFruit.salad.price})!`, "success");
     }
   </script>

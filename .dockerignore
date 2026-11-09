@@ -1,0 +1,5 @@
+.env
+.env.local
+.git
+.posthog-wizard-cache
+node_modules
