@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🍓 Garden Strawberry - Dedicated Fruit Page - Fruits Emporium</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo-area">
+      <span class="logo-icon">🍍</span>
+      <span class="logo-text">Fruits Emporium</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#categories-section">10 Fruits</a></li>
+      <li><a href="recipes.html">Juices & Salads</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="index.html" class="btn btn-secondary">← Back to All Fruits</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Horizontal 10 Fruit Pill Bar -->
+    <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; margin-bottom: 0.6rem; text-transform: uppercase;">
+      ⚡ Switch Fruit Page:
+    </div>
+    <div class="category-pill-strip">
+      <a href="apple.html" class="category-pill"><span>🍎</span> <span>Apple</span></a>
+      <a href="banana.html" class="category-pill"><span>🍌</span> <span>Banana</span></a>
+      <a href="orange.html" class="category-pill"><span>🍊</span> <span>Orange</span></a>
+      <a href="mango.html" class="category-pill"><span>🥭</span> <span>Mango</span></a>
+      <a href="strawberry.html" class="category-pill active"><span>🍓</span> <span>Strawberry</span></a>
+      <a href="blueberry.html" class="category-pill"><span>🫐</span> <span>Blueberry</span></a>
+      <a href="pineapple.html" class="category-pill"><span>🍍</span> <span>Pineapple</span></a>
+      <a href="watermelon.html" class="category-pill"><span>🍉</span> <span>Watermelon</span></a>
+      <a href="peach.html" class="category-pill"><span>🍑</span> <span>Peach</span></a>
+      <a href="grape.html" class="category-pill"><span>🍇</span> <span>Grape</span></a>
+    </div>
+
+    <!-- Strawberry Hero Banner -->
+    <section class="fruit-hero-banner" style="border-top: 4px solid #f43f5e;">
+      <div class="fruit-hero-icon">🍓</div>
+      <div class="fruit-hero-info">
+        <div class="fruit-hero-tags">
+          <span class="badge badge-green">Aggregate Accessory</span>
+          <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">📍 California, USA</span>
+          <span class="badge" style="background: rgba(249, 115, 22, 0.2); color: #fb923c;">🗓 Spring / Summer</span>
+        </div>
+        <h1 class="fruit-hero-title">Garden Strawberry</h1>
+        <p class="fruit-hero-desc">
+          Ruby red sweetness harvested at the peak of sun ripeness. High in ellagic acid antioxidants, manganese, folate, and a massive 149% Daily Value of Vitamin C.
+        </p>
+
+        <div class="fruit-stats-grid">
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Energy</div>
+            <div class="fruit-stat-num">49 kcal</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Natural Sugar</div>
+            <div class="fruit-stat-num">7g</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Fiber</div>
+            <div class="fruit-stat-num">3.0g</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Vitamin C</div>
+            <div class="fruit-stat-num">149% DV</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Potassium</div>
+            <div class="fruit-stat-num">233mg</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strawberry Items Section -->
+    <div class="split-grid" style="margin-top: 2rem;">
+      <!-- Juice Workshop -->
+      <div class="feature-box" id="juices">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+          <h3>🍹 Strawberry Juices & Sparklers</h3>
+          <span class="badge" style="background:#f59e0b; color:#fff;">Berry Crush</span>
+        </div>
+        <p>Pure ruby muddled berries, fresh basil infusion, and botanical sparklers.</p>
+
+        <div style="font-size: 0.8rem; font-weight:700; color:#38bdf8; text-transform:uppercase; margin-bottom:0.5rem;">
+          Click Button to Order Item:
+        </div>
+        <div class="item-btn-list">
+          <button class="item-action-btn" onclick="showToast('Ordered: Cold-Pressed Ruby Strawberry Juice - $5.25', 'success')">
+            <span>🍹 Cold-Pressed Ruby Strawberry Juice</span>
+            <span class="item-price-tag">$5.25 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Strawberry Basil Lemonade Sparkler - $6.80', 'success')">
+            <span>🧃 Strawberry Basil Lemonade Sparkler</span>
+            <span class="item-price-tag">$6.80 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Strawberry Coconut Cloud Smoothie - $6.95', 'success')">
+            <span>🥥 Strawberry Coconut Cloud Smoothie</span>
+            <span class="item-price-tag">$6.95 • Order</span>
+          </button>
+        </div>
+
+        <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: #38bdf8;">Signature Recipe: Ruby Strawberry Basil Sparkler</h4>
+        <ul class="ingredients-list">
+          <li><span>1.5 cups fresh organic strawberries</span> <span>Ruby Berry</span></li>
+          <li><span>4 fresh sweet basil leaves (bruised)</span> <span>Herb</span></li>
+          <li><span>1/2 fresh lime juice</span> <span>Zest</span></li>
+          <li><span>200ml artisanal chilled tonic</span> <span>Fizzy</span></li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="showToast('Muddled fresh Ruby Strawberry Basil Sparkler!', 'success')">
+          🍹 Muddle & Serve Fresh Sparkler
+        </button>
+      </div>
+
+      <!-- Salad Kitchen -->
+      <div class="feature-box" id="salads">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+          <h3>🥗 Gourmet Strawberry Salads</h3>
+          <span class="badge" style="background:#84cc16; color:#0f172a; font-weight:800;">Artisan</span>
+        </div>
+        <p>Tender baby spinach, crumbled French chèvre, toasted pecans, and Modena balsamic.</p>
+
+        <div style="font-size: 0.8rem; font-weight:700; color:#84cc16; text-transform:uppercase; margin-bottom:0.5rem;">
+          Click Button to Order Item:
+        </div>
+        <div class="item-btn-list">
+          <button class="item-action-btn" onclick="showToast('Ordered: Baby Spinach, Goat Cheese & Strawberry Salad - $11.50', 'success')">
+            <span>🥗 Baby Spinach & Strawberry Balsamic Salad</span>
+            <span class="item-price-tag">$11.50 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Quartered Berries with Aged Modena Glaze - $5.20', 'success')">
+            <span>🥣 Quartered Berries with Aged Modena Glaze</span>
+            <span class="item-price-tag">$5.20 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Arugula, Feta & Strawberry Crunch Bowl - $10.80', 'success')">
+            <span>🌿 Arugula, Feta & Strawberry Crunch Bowl</span>
+            <span class="item-price-tag">$10.80 • Order</span>
+          </button>
+        </div>
+
+        <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: #84cc16;">Signature Recipe: Spinach, Strawberry & Goat Cheese</h4>
+        <ul class="ingredients-list">
+          <li><span>1.5 cups quartered fresh strawberries</span> <span>Fresh Cut</span></li>
+          <li><span>3 cups tender organic baby spinach</span> <span>Greens</span></li>
+          <li><span>1/3 cup toasted candied pecans</span> <span>Crunchy</span></li>
+          <li><span>Aged Modena balsamic vinegar reduction</span> <span>Glaze</span></li>
+        </ul>
+        <button class="btn btn-secondary" style="width:100%; justify-content:center; border-color:#84cc16; color:#84cc16;" onclick="showToast('Plated Spinach & Strawberry Balsamic Salad!', 'success')">
+          🥗 Toss & Plate Strawberry Salad
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">🍍 Fruits Emporium</p>
+      <p>10 Fresh Fruit Categories, Handcrafted Cold-Pressed Juices & Gourmet Fruit Salads.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+

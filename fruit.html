@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit Profile - Fruits Emporium</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo-area">
+      <span class="logo-icon">🍍</span>
+      <span class="logo-text">Fruits Emporium</span>
+    </a>
+    
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#categories-section">10 Fruits</a></li>
+      <li><a href="recipes.html">Juices & Salads</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="index.html#categories-section" class="btn btn-secondary">
+        ← All Categories
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Quick 10 Fruit Pill Strip -->
+    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">
+        Switch Fruit Category (10 Total):
+      </span>
+      <a href="index.html#categories-section" style="font-size: 0.85rem; color: #38bdf8; text-decoration: none;">
+        ← View All 10 Categories
+      </a>
+    </div>
+    <div class="category-pill-strip" id="fruit-category-pills">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Dynamic Hero Banner for Fruit -->
+    <section class="fruit-hero-banner" id="fruit-hero">
+      <div class="fruit-hero-icon" id="hero-emoji">🍎</div>
+      <div class="fruit-hero-info">
+        <div class="fruit-hero-tags">
+          <span class="badge badge-green" id="hero-category">Category</span>
+          <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;" id="hero-origin">Origin</span>
+          <span class="badge" style="background: rgba(249, 115, 22, 0.2); color: #fb923c;" id="hero-season">Season</span>
+        </div>
+        <h1 class="fruit-hero-title" id="hero-name">Fruit Name</h1>
+        <p class="fruit-hero-desc" id="hero-desc">Fruit description goes here.</p>
+
+        <div class="fruit-stats-grid">
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Energy</div>
+            <div class="fruit-stat-num" id="stat-cals">0 kcal</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Natural Sugar</div>
+            <div class="fruit-stat-num" id="stat-sugar">0g</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Fiber</div>
+            <div class="fruit-stat-num" id="stat-fiber">0g</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Vitamin C</div>
+            <div class="fruit-stat-num" id="stat-vitc">0%</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Potassium</div>
+            <div class="fruit-stat-num" id="stat-potassium">0mg</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fruit Detail Tabs -->
+    <nav class="tabs-nav" id="fruit-tabs">
+      <button class="tab-btn active" data-tab="juice-tab">🍹 Juices & Smoothies</button>
+      <button class="tab-btn" data-tab="salad-tab">🥗 Gourmet Salads</button>
+      <button class="tab-btn" data-tab="nutrition-tab">🔬 Nutrition Facts</button>
+    </nav>
+
+    <!-- TAB 1: Juice Workshop -->
+    <section class="tab-pane active" id="juice-tab">
+      <div class="split-grid">
+        <!-- Recipe Details -->
+        <div class="feature-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <h3 id="juice-title">🍹 Artisanal Juice</h3>
+            <span class="badge" style="background:#f59e0b; color:#fff;" id="juice-price">$0.00</span>
+          </div>
+          <p id="juice-profile" style="color: #cbd5e1; font-style: italic;">Profile description</p>
+
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: #38bdf8;">Ingredients:</h4>
+          <ul class="ingredients-list" id="juice-ingredients">
+            <!-- Injected by JS -->
+          </ul>
+
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: #34d399;">Cold-Press Instructions:</h4>
+          <ol id="juice-steps" style="padding-left: 1.25rem; font-size: 0.88rem; color: #94a3b8; margin-bottom: 1.5rem;">
+            <!-- Injected by JS -->
+          </ol>
+        </div>
+
+        <!-- Interactive Juice Items & Clickable Buttons -->
+        <div class="feature-box" style="background: rgba(15, 23, 42, 0.75);">
+          <h3>🍹 Available Juice Items</h3>
+          <p>Click any of the individual juice buttons below to place an order.</p>
+
+          <div class="item-btn-list" id="juice-items-list">
+            <!-- Injected by JS with actual items -->
+          </div>
+
+          <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.25rem 0;">
+
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: #38bdf8;">🧪 Custom Blend Options</h4>
+          <div class="form-group">
+            <label class="form-label">Sweetness Level: <span id="val-sweetness" style="color: #38bdf8;">100% (Standard)</span></label>
+            <input type="range" min="0" max="150" value="100" class="form-input" id="slider-sweetness" oninput="updateSweetness(this.value)">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Ice Preference:</label>
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-secondary" onclick="setIcePreference('None')" style="flex:1;">No Ice</button>
+              <button class="btn btn-secondary active" id="btn-ice-regular" onclick="setIcePreference('Regular')" style="flex:1;">Regular</button>
+              <button class="btn btn-secondary" onclick="setIcePreference('Extra Crushed')" style="flex:1;">Extra Ice</button>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.25rem;">
+            <button class="btn btn-primary" onclick="handleBlendJuice()">
+              🍹 Blend & Prepare Juice
+            </button>
+            <button class="btn btn-secondary" onclick="handleOrderFeaturedJuice()">
+              📦 Order Featured Juice
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: Salad Kitchen -->
+    <section class="tab-pane" id="salad-tab">
+      <div class="split-grid">
+        <!-- Recipe Details -->
+        <div class="feature-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <h3 id="salad-title">🥗 Gourmet Salad</h3>
+            <span class="badge" style="background:#84cc16; color:#0f172a; font-weight:800;" id="salad-price">$0.00</span>
+          </div>
+          <p id="salad-profile" style="color: #cbd5e1; font-style: italic;">Profile description</p>
+
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: #38bdf8;">Artisan Ingredients:</h4>
+          <ul class="ingredients-list" id="salad-ingredients">
+            <!-- Injected by JS -->
+          </ul>
+
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: #84cc16;">Culinary Plating Steps:</h4>
+          <ol id="salad-steps" style="padding-left: 1.25rem; font-size: 0.88rem; color: #94a3b8; margin-bottom: 1.5rem;">
+            <!-- Injected by JS -->
+          </ol>
+        </div>
+
+        <!-- Interactive Salad Items & Clickable Buttons -->
+        <div class="feature-box" style="background: rgba(15, 23, 42, 0.75);">
+          <h3>🥗 Available Salad Items</h3>
+          <p>Click any of the individual salad items below to place an order.</p>
+
+          <div class="item-btn-list" id="salad-items-list">
+            <!-- Injected by JS with actual items -->
+          </div>
+
+          <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.25rem 0;">
+
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: #84cc16;">🥗 Salad Dressing Options</h4>
+          <div class="form-group">
+            <label class="form-label">Dressing Intensity:</label>
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-secondary" onclick="setDressing('Light')" style="flex:1;">Light</button>
+              <button class="btn btn-secondary active" onclick="setDressing('Standard')" style="flex:1;">Standard</button>
+              <button class="btn btn-secondary" onclick="setDressing('Extra Vinaigrette')" style="flex:1;">Extra</button>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.25rem;">
+            <button class="btn btn-primary" onclick="handleTossSalad()">
+              🥗 Toss & Plate Salad
+            </button>
+            <button class="btn btn-secondary" onclick="handleOrderFeaturedSalad()">
+              🛒 Order Featured Salad
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Nutrition Facts -->
+    <section class="tab-pane" id="nutrition-tab">
+      <div class="feature-box">
+        <h3>🔬 Detailed Nutrition & Health Benefits</h3>
+        <p>Macronutrient composition and key micronutrients per 100g serving.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+          <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div style="color: #94a3b8; font-size: 0.85rem;">Caloric Energy</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #38bdf8;" id="lab-calories">0 kcal</div>
+            <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.25rem;">Per 100g serving</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div style="color: #94a3b8; font-size: 0.85rem;">Carbohydrates & Sugars</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #fbbf24;" id="lab-carbs">0g / 0g</div>
+            <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.25rem;">Natural fruit sugars</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div style="color: #94a3b8; font-size: 0.85rem;">Dietary Fiber</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #34d399;" id="lab-fiber">0g</div>
+            <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.25rem;">Supports gut microbiome</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div style="color: #94a3b8; font-size: 0.85rem;">Electrolyte Potassium</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #a78bfa;" id="lab-potassium">0mg K+</div>
+            <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.25rem;">Hydration & heart health</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">🍍 Fruits Emporium</p>
+      <p>10 Fresh Fruit Categories, Handcrafted Cold-Pressed Juices & Gourmet Fruit Salads.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/fruits-data.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    let currentFruit = null;
+    let selectedIce = "Regular";
+    let selectedDressing = "Standard";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Resolve Fruit from URL query parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const fruitId = urlParams.get("id") || "apple";
+      currentFruit = getFruitById(fruitId);
+
+      // 2. Render Top Switcher Pills
+      renderCategoryPillStrip("fruit-category-pills", currentFruit.id);
+
+      // 3. Populate Fruit Profile & Items in DOM
+      populateFruitPage(currentFruit);
+
+      // 4. Tab Navigation
+      setupTabs();
+    });
+
+    function escapeQuotes(str) {
+      return (str || "").replace(/'/g, "\\'");
+    }
+
+    function populateFruitPage(fruit) {
+      document.title = `${fruit.emoji} ${fruit.name} - Fruits Emporium`;
+      
+      // Hero
+      document.getElementById("hero-emoji").textContent = fruit.emoji;
+      document.getElementById("hero-name").textContent = fruit.name;
+      document.getElementById("hero-category").textContent = fruit.category;
+      document.getElementById("hero-origin").textContent = `📍 ${fruit.origin}`;
+      document.getElementById("hero-season").textContent = `🗓 ${fruit.season}`;
+      document.getElementById("hero-desc").textContent = fruit.description;
+
+      // Stats
+      document.getElementById("stat-cals").textContent = `${fruit.nutrition.calories} kcal`;
+      document.getElementById("stat-sugar").textContent = fruit.nutrition.sugar;
+      document.getElementById("stat-fiber").textContent = fruit.nutrition.fiber;
+      document.getElementById("stat-vitc").textContent = fruit.nutrition.vitaminC;
+      document.getElementById("stat-potassium").textContent = fruit.nutrition.potassium;
+
+      // Juice
+      document.getElementById("juice-title").textContent = `🍹 ${fruit.juice.name}`;
+      document.getElementById("juice-price").textContent = fruit.juice.price;
+      document.getElementById("juice-profile").textContent = `Profile: ${fruit.juice.flavorProfile} • Prep: ${fruit.juice.prepTime}`;
+      document.getElementById("juice-ingredients").innerHTML = fruit.juice.ingredients.map(ing => `<li><span>${ing}</span> <span style="color:#10b981;">✓ Fresh</span></li>`).join("");
+      document.getElementById("juice-steps").innerHTML = fruit.juice.steps.map(step => `<li>${step}</li>`).join("");
+
+      // Salad
+      document.getElementById("salad-title").textContent = `🥗 ${fruit.salad.name}`;
+      document.getElementById("salad-price").textContent = fruit.salad.price;
+      document.getElementById("salad-profile").textContent = `Profile: ${fruit.salad.flavorProfile} • Prep: ${fruit.salad.prepTime}`;
+      document.getElementById("salad-ingredients").innerHTML = fruit.salad.ingredients.map(ing => `<li><span>${ing}</span> <span style="color:#84cc16;">✓ Organic</span></li>`).join("");
+      document.getElementById("salad-steps").innerHTML = fruit.salad.steps.map(step => `<li>${step}</li>`).join("");
+
+      // Actual Item Buttons for Juice & Salad
+      const juiceItems = (fruit.items || []).filter(i => i.type === "juice");
+      const saladItems = (fruit.items || []).filter(i => i.type === "salad");
+
+      document.getElementById("juice-items-list").innerHTML = juiceItems.map(item => `
+        <button class="item-action-btn" onclick="orderFruitItem('${fruit.id}', '${escapeQuotes(item.name)}', ${item.price})">
+          <span>${item.icon} ${item.name}</span>
+          <span class="item-price-tag">$${item.price.toFixed(2)} • Order</span>
+        </button>
+      `).join("");
+
+      document.getElementById("salad-items-list").innerHTML = saladItems.map(item => `
+        <button class="item-action-btn" onclick="orderFruitItem('${fruit.id}', '${escapeQuotes(item.name)}', ${item.price})">
+          <span>${item.icon} ${item.name}</span>
+          <span class="item-price-tag">$${item.price.toFixed(2)} • Order</span>
+        </button>
+      `).join("");
+
+      // Nutrition Lab
+      document.getElementById("lab-calories").textContent = `${fruit.nutrition.calories} kcal`;
+      document.getElementById("lab-carbs").textContent = `${fruit.nutrition.carbs} / ${fruit.nutrition.sugar}`;
+      document.getElementById("lab-fiber").textContent = fruit.nutrition.fiber;
+      document.getElementById("lab-potassium").textContent = `${fruit.nutrition.potassium} K+`;
+    }
+
+    function setupTabs() {
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      tabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          tabBtns.forEach(b => b.classList.remove("active"));
+          document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
+
+          btn.classList.add("active");
+          const target = document.getElementById(btn.getAttribute("data-tab"));
+          if (target) target.classList.add("active");
+        });
+      });
+    }
+
+    // Interactive Custom Controls
+    function updateSweetness(val) {
+      document.getElementById("val-sweetness").textContent = `${val}%`;
+    }
+
+    function setIcePreference(ice) {
+      selectedIce = ice;
+      window.showToast(`Ice preference set to: ${ice}`, "info");
+    }
+
+    function setDressing(dressing) {
+      selectedDressing = dressing;
+      window.showToast(`Dressing set to: ${dressing}`, "info");
+    }
+
+    function handleBlendJuice() {
+      const sweetness = document.getElementById("slider-sweetness").value;
+      window.showToast(`Blended fresh ${currentFruit.juice.name} (${sweetness}% sweetness, ${selectedIce} ice)!`, "success");
+    }
+
+    function handleOrderFeaturedJuice() {
+      window.showToast(`Ordered: ${currentFruit.juice.name} (${currentFruit.juice.price})!`, "success");
+    }
+
+    function handleTossSalad() {
+      window.showToast(`Tossed and plated fresh ${currentFruit.salad.name} with ${selectedDressing} dressing!`, "success");
+    }
+
+    function handleOrderFeaturedSalad() {
+      window.showToast(`Ordered: ${currentFruit.salad.name} (${currentFruit.salad.price})!`, "success");
+    }
+  </script>
+</body>
+</html>

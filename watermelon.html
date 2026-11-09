@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🍉 Crimson Watermelon - Dedicated Fruit Page - Fruits Emporium</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo-area">
+      <span class="logo-icon">🍍</span>
+      <span class="logo-text">Fruits Emporium</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#categories-section">10 Fruits</a></li>
+      <li><a href="recipes.html">Juices & Salads</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="index.html" class="btn btn-secondary">← Back to All Fruits</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Horizontal 10 Fruit Pill Bar -->
+    <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; margin-bottom: 0.6rem; text-transform: uppercase;">
+      ⚡ Switch Fruit Page:
+    </div>
+    <div class="category-pill-strip">
+      <a href="apple.html" class="category-pill"><span>🍎</span> <span>Apple</span></a>
+      <a href="banana.html" class="category-pill"><span>🍌</span> <span>Banana</span></a>
+      <a href="orange.html" class="category-pill"><span>🍊</span> <span>Orange</span></a>
+      <a href="mango.html" class="category-pill"><span>🥭</span> <span>Mango</span></a>
+      <a href="strawberry.html" class="category-pill"><span>🍓</span> <span>Strawberry</span></a>
+      <a href="blueberry.html" class="category-pill"><span>🫐</span> <span>Blueberry</span></a>
+      <a href="pineapple.html" class="category-pill"><span>🍍</span> <span>Pineapple</span></a>
+      <a href="watermelon.html" class="category-pill active"><span>🍉</span> <span>Watermelon</span></a>
+      <a href="peach.html" class="category-pill"><span>🍑</span> <span>Peach</span></a>
+      <a href="grape.html" class="category-pill"><span>🍇</span> <span>Grape</span></a>
+    </div>
+
+    <!-- Watermelon Hero Banner -->
+    <section class="fruit-hero-banner" style="border-top: 4px solid #ec4899;">
+      <div class="fruit-hero-icon">🍉</div>
+      <div class="fruit-hero-info">
+        <div class="fruit-hero-tags">
+          <span class="badge badge-green">Pepo Berry</span>
+          <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">📍 Georgia, USA</span>
+          <span class="badge" style="background: rgba(249, 115, 22, 0.2); color: #fb923c;">🗓 Summer Harvest</span>
+        </div>
+        <h1 class="fruit-hero-title">Crimson Watermelon</h1>
+        <p class="fruit-hero-desc">
+          92% pure botanical hydration. Seedless Crimson Sweet watermelon loaded with L-citrulline amino acids, heart-healthy lycopene, and refreshing electrolytes.
+        </p>
+
+        <div class="fruit-stats-grid">
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Energy</div>
+            <div class="fruit-stat-num">46 kcal</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Natural Sugar</div>
+            <div class="fruit-stat-num">9g</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Fiber</div>
+            <div class="fruit-stat-num">0.6g</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Vitamin C</div>
+            <div class="fruit-stat-num">21% DV</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Potassium</div>
+            <div class="fruit-stat-num">170mg</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Watermelon Items Section -->
+    <div class="split-grid" style="margin-top: 2rem;">
+      <!-- Juice Workshop -->
+      <div class="feature-box" id="juices">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+          <h3>🍹 Watermelon Hydrators & Coolers</h3>
+          <span class="badge" style="background:#f59e0b; color:#fff;">Hydration</span>
+        </div>
+        <p>Pure cold-pressed seedless watermelon with fresh lime and crushed garden spearmint.</p>
+
+        <div style="font-size: 0.8rem; font-weight:700; color:#38bdf8; text-transform:uppercase; margin-bottom:0.5rem;">
+          Click Button to Order Item:
+        </div>
+        <div class="item-btn-list">
+          <button class="item-action-btn" onclick="showToast('Ordered: Crimson Watermelon Mint Hydrator - $4.80', 'success')">
+            <span>🍹 Crimson Watermelon Mint Hydrator (500ml)</span>
+            <span class="item-price-tag">$4.80 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Watermelon Lime Agua Fresca - $5.50', 'success')">
+            <span>🧃 Watermelon Lime Agua Fresca</span>
+            <span class="item-price-tag">$5.50 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Frozen Watermelon Basil Granita - $5.25', 'success')">
+            <span>🍧 Frozen Watermelon Basil Granita</span>
+            <span class="item-price-tag">$5.25 • Order</span>
+          </button>
+        </div>
+
+        <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: #38bdf8;">Signature Recipe: Chilled Crimson Cooler</h4>
+        <ul class="ingredients-list">
+          <li><span>3 cups seedless crimson watermelon cubes</span> <span>Cold Chilled</span></li>
+          <li><span>Juice of 1 whole key lime</span> <span>Citrus</span></li>
+          <li><span>Pinch of pink Himalayan black salt</span> <span>Electrolyte</span></li>
+          <li><span>Handful of fresh spearmint leaves</span> <span>Cooling</span></li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="showToast('Pressed Chilled Crimson Watermelon Cooler!', 'success')">
+          🍹 Blend & Serve Watermelon Cooler
+        </button>
+      </div>
+
+      <!-- Salad Kitchen -->
+      <div class="feature-box" id="salads">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+          <h3>🥗 Mediterranean Watermelon Salads</h3>
+          <span class="badge" style="background:#84cc16; color:#0f172a; font-weight:800;">Classic Greek</span>
+        </div>
+        <p>Cold watermelon cubes paired with authentic Greek sheep's milk feta and Greek olive oil.</p>
+
+        <div style="font-size: 0.8rem; font-weight:700; color:#84cc16; text-transform:uppercase; margin-bottom:0.5rem;">
+          Click Button to Order Item:
+        </div>
+        <div class="item-btn-list">
+          <button class="item-action-btn" onclick="showToast('Ordered: Greek Feta, Mint & Watermelon Salad - $9.80', 'success')">
+            <span>🥗 Greek Feta, Mint & Watermelon Salad</span>
+            <span class="item-price-tag">$9.80 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Cold Watermelon Cubes Snack Tub - $3.99', 'success')">
+            <span>🥣 Cold Watermelon Cubes Snack Tub</span>
+            <span class="item-price-tag">$3.99 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Watermelon, Cucumber & Mint Carpaccio - $10.50', 'success')">
+            <span>🥒 Watermelon Cucumber Mint Carpaccio</span>
+            <span class="item-price-tag">$10.50 • Order</span>
+          </button>
+        </div>
+
+        <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: #84cc16;">Signature Recipe: Greek Watermelon & Feta</h4>
+        <ul class="ingredients-list">
+          <li><span>3 cups cold watermelon (1-inch cubes)</span> <span>Crisp Cut</span></li>
+          <li><span>100g authentic Greek sheep feta cheese</span> <span>Briny</span></li>
+          <li><span>Freshly torn garden spearmint</span> <span>Fresh</span></li>
+          <li><span>Cold-pressed extra virgin Greek olive oil</span> <span>Finish</span></li>
+        </ul>
+        <button class="btn btn-secondary" style="width:100%; justify-content:center; border-color:#84cc16; color:#84cc16;" onclick="showToast('Plated Greek Watermelon & Feta Salad!', 'success')">
+          🥗 Toss & Plate Watermelon Salad
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">🍍 Fruits Emporium</p>
+      <p>10 Fresh Fruit Categories, Handcrafted Cold-Pressed Juices & Gourmet Fruit Salads.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+

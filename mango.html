@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🥭 Alphonso Mango - Dedicated Fruit Page - Fruits Emporium</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo-area">
+      <span class="logo-icon">🍍</span>
+      <span class="logo-text">Fruits Emporium</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#categories-section">10 Fruits</a></li>
+      <li><a href="recipes.html">Juices & Salads</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="index.html" class="btn btn-secondary">← Back to All Fruits</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Horizontal 10 Fruit Pill Bar -->
+    <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; margin-bottom: 0.6rem; text-transform: uppercase;">
+      ⚡ Switch Fruit Page:
+    </div>
+    <div class="category-pill-strip">
+      <a href="apple.html" class="category-pill"><span>🍎</span> <span>Apple</span></a>
+      <a href="banana.html" class="category-pill"><span>🍌</span> <span>Banana</span></a>
+      <a href="orange.html" class="category-pill"><span>🍊</span> <span>Orange</span></a>
+      <a href="mango.html" class="category-pill active"><span>🥭</span> <span>Mango</span></a>
+      <a href="strawberry.html" class="category-pill"><span>🍓</span> <span>Strawberry</span></a>
+      <a href="blueberry.html" class="category-pill"><span>🫐</span> <span>Blueberry</span></a>
+      <a href="pineapple.html" class="category-pill"><span>🍍</span> <span>Pineapple</span></a>
+      <a href="watermelon.html" class="category-pill"><span>🍉</span> <span>Watermelon</span></a>
+      <a href="peach.html" class="category-pill"><span>🍑</span> <span>Peach</span></a>
+      <a href="grape.html" class="category-pill"><span>🍇</span> <span>Grape</span></a>
+    </div>
+
+    <!-- Mango Hero Banner -->
+    <section class="fruit-hero-banner" style="border-top: 4px solid #fbbf24;">
+      <div class="fruit-hero-icon">🥭</div>
+      <div class="fruit-hero-info">
+        <div class="fruit-hero-tags">
+          <span class="badge badge-green">Tropical Drupe</span>
+          <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">📍 Ratnagiri, India</span>
+          <span class="badge" style="background: rgba(249, 115, 22, 0.2); color: #fb923c;">🗓 Spring / Summer</span>
+        </div>
+        <h1 class="fruit-hero-title">Alphonso Mango</h1>
+        <p class="fruit-hero-desc">
+          Celebrated globally as the King of Fruits. Famous for its saffron aroma, non-fibrous golden velvet flesh, and luscious sweetness packed with vitamins A & C.
+        </p>
+
+        <div class="fruit-stats-grid">
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Energy</div>
+            <div class="fruit-stat-num">99 kcal</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Natural Sugar</div>
+            <div class="fruit-stat-num">23g</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Fiber</div>
+            <div class="fruit-stat-num">2.6g</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Vitamin C</div>
+            <div class="fruit-stat-num">67% DV</div>
+          </div>
+          <div class="fruit-stat-box">
+            <div class="fruit-stat-label">Potassium</div>
+            <div class="fruit-stat-num">277mg</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mango Items Section -->
+    <div class="split-grid" style="margin-top: 2rem;">
+      <!-- Juice Workshop -->
+      <div class="feature-box" id="juices">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+          <h3>🍹 Mango Nectars & Lassis</h3>
+          <span class="badge" style="background:#f59e0b; color:#fff;">Velvety</span>
+        </div>
+        <p>Thick pureed Alphonso pulp whisked with whole yogurt, saffron, and crushed cardamom.</p>
+
+        <div style="font-size: 0.8rem; font-weight:700; color:#38bdf8; text-transform:uppercase; margin-bottom:0.5rem;">
+          Click Button to Order Item:
+        </div>
+        <div class="item-btn-list">
+          <button class="item-action-btn" onclick="showToast('Ordered: Royal Alphonso Mango Nectar - $5.75', 'success')">
+            <span>🍹 Royal Alphonso Mango Nectar (350ml)</span>
+            <span class="item-price-tag">$5.75 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Cardamom Pistachio Mango Lassi - $7.50', 'success')">
+            <span>🥤 Cardamom Pistachio Mango Lassi</span>
+            <span class="item-price-tag">$7.50 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Mango Passionfruit Cooler - $6.50', 'success')">
+            <span>🍍 Mango Passionfruit Cold Cooler</span>
+            <span class="item-price-tag">$6.50 • Order</span>
+          </button>
+        </div>
+
+        <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: #38bdf8;">Signature Recipe: Royal Golden Mango Lassi</h4>
+        <ul class="ingredients-list">
+          <li><span>1 cup ripe Alphonso mango puree</span> <span>Pure Gold</span></li>
+          <li><span>1/2 cup Greek probiotic yogurt</span> <span>Creamy</span></li>
+          <li><span>2 crushed green cardamom pods</span> <span>Aromatic</span></li>
+          <li><span>Crushed pistachio dust & saffron</span> <span>Garnish</span></li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="showToast('Whisked fresh Royal Alphonso Mango Lassi!', 'success')">
+          🍹 Whisk & Serve Fresh Mango Lassi
+        </button>
+      </div>
+
+      <!-- Salad Kitchen -->
+      <div class="feature-box" id="salads">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+          <h3>🥗 Gourmet Mango Salads</h3>
+          <span class="badge" style="background:#84cc16; color:#0f172a; font-weight:800;">Zesty</span>
+        </div>
+        <p>Julienned semi-ripe mangoes tossed with roasted peanuts, fresh cilantro, and chili-lime.</p>
+
+        <div style="font-size: 0.8rem; font-weight:700; color:#84cc16; text-transform:uppercase; margin-bottom:0.5rem;">
+          Click Button to Order Item:
+        </div>
+        <div class="item-btn-list">
+          <button class="item-action-btn" onclick="showToast('Ordered: Thai Spicy Mango & Peanut Salad - $11.00', 'success')">
+            <span>🥗 Thai Spicy Mango & Peanut Salad</span>
+            <span class="item-price-tag">$11.00 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Diced Golden Mango Bowl with Lime - $5.50', 'success')">
+            <span>🥣 Diced Golden Mango Bowl with Lime</span>
+            <span class="item-price-tag">$5.50 • Order</span>
+          </button>
+          <button class="item-action-btn" onclick="showToast('Ordered: Mango Avocado & Cilantro Ceviche - $12.50', 'success')">
+            <span>🥑 Mango Avocado & Cilantro Ceviche</span>
+            <span class="item-price-tag">$12.50 • Order</span>
+          </button>
+        </div>
+
+        <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: #84cc16;">Signature Recipe: Thai Spicy Mango Salad</h4>
+        <ul class="ingredients-list">
+          <li><span>1 semi-ripe Alphonso mango (julienned)</span> <span>Crisp Cut</span></li>
+          <li><span>1 cup shredded red cabbage & carrots</span> <span>Crunchy</span></li>
+          <li><span>Handful fresh cilantro & Thai basil</span> <span>Herbs</span></li>
+          <li><span>1/4 cup crushed roasted peanuts & lime</span> <span>Dressing</span></li>
+        </ul>
+        <button class="btn btn-secondary" style="width:100%; justify-content:center; border-color:#84cc16; color:#84cc16;" onclick="showToast('Tossed & plated fresh Thai Spicy Mango Salad!', 'success')">
+          🥗 Toss & Plate Mango Salad
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">🍍 Fruits Emporium</p>
+      <p>10 Fresh Fruit Categories, Handcrafted Cold-Pressed Juices & Gourmet Fruit Salads.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+

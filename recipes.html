@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juices & Salads Catalog - Fruits Emporium</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo-area">
+      <span class="logo-icon">🍍</span>
+      <span class="logo-text">Fruits Emporium</span>
+    </a>
+    
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#categories-section">10 Fruits</a></li>
+      <li><a href="recipes.html" class="active">Juices & Salads</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="index.html#categories-section" class="btn btn-primary">
+        Explore 10 Fruits →
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header style="margin-bottom: 2rem;">
+      <h1 style="font-size: 2.4rem; font-weight: 800; margin-bottom: 0.5rem;">🍹 Juices & 🥗 Salads Menu</h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem;">
+        Explore handcrafted cold-pressed juices and gourmet fruit salads crafted from our 10 fresh fruit categories.
+      </p>
+
+      <!-- Filter Controls -->
+      <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
+        <button class="btn btn-primary filter-btn active" data-filter="all" onclick="filterCatalog('all', this)">All Items (20)</button>
+        <button class="btn btn-secondary filter-btn" data-filter="juice" onclick="filterCatalog('juice', this)">🍹 Cold-Pressed Juices (10)</button>
+        <button class="btn btn-secondary filter-btn" data-filter="salad" onclick="filterCatalog('salad', this)">🥗 Gourmet Salads (10)</button>
+      </div>
+    </header>
+
+    <!-- Catalog Grid -->
+    <div class="grid-fruits" id="recipes-catalog">
+      <!-- Injected by JavaScript -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">🍍 Fruits Emporium</p>
+      <p>10 Fresh Fruit Categories, Handcrafted Cold-Pressed Juices & Gourmet Fruit Salads.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/fruits-data.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    let activeFilter = "all";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCatalog();
+    });
+
+    function filterCatalog(type, btn) {
+      activeFilter = type;
+      document.querySelectorAll(".filter-btn").forEach(b => {
+        b.classList.remove("btn-primary");
+        b.classList.add("btn-secondary");
+      });
+      btn.classList.remove("btn-secondary");
+      btn.classList.add("btn-primary");
+
+      renderCatalog();
+    }
+
+    function renderCatalog() {
+      const container = document.getElementById("recipes-catalog");
+      if (!container || !window.FRUITS_DATABASE) return;
+
+      let items = [];
+
+      window.FRUITS_DATABASE.forEach(fruit => {
+        if (activeFilter === "all" || activeFilter === "juice") {
+          items.push({
+            type: "juice",
+            badge: "🍹 Cold-Pressed Juice",
+            fruitEmoji: fruit.emoji,
+            fruitName: fruit.name,
+            fruitId: fruit.id,
+            recipeName: fruit.juice.name,
+            profile: fruit.juice.flavorProfile,
+            prep: fruit.juice.prepTime,
+            price: fruit.juice.price,
+            ingredients: fruit.juice.ingredients.slice(0, 3).join(", ") + "..."
+          });
+        }
+        if (activeFilter === "all" || activeFilter === "salad") {
+          items.push({
+            type: "salad",
+            badge: "🥗 Gourmet Salad",
+            fruitEmoji: fruit.emoji,
+            fruitName: fruit.name,
+            fruitId: fruit.id,
+            recipeName: fruit.salad.name,
+            profile: fruit.salad.flavorProfile,
+            prep: fruit.salad.prepTime,
+            price: fruit.salad.price,
+            ingredients: fruit.salad.ingredients.slice(0, 3).join(", ") + "..."
+          });
+        }
+      });
+
+      container.innerHTML = items.map(item => `
+        <div class="fruit-card" style="border-top: 3px solid ${item.type === 'juice' ? '#f59e0b' : '#84cc16'}">
+          <div class="fruit-card-banner" style="font-size: 3.2rem;">
+            <span class="fruit-card-badge badge badge-green">${item.badge}</span>
+            ${item.fruitEmoji}
+          </div>
+          <div class="fruit-card-body">
+            <div class="fruit-card-title">
+              <span style="font-size: 1.15rem;">${item.recipeName}</span>
+            </div>
+            <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">Fruit: ${item.fruitName}</p>
+            <p class="fruit-card-desc" style="font-size: 0.82rem; margin-bottom: 0.75rem;">
+              <em>${item.profile}</em><br>
+              <span style="color: #64748b;">Key ingredients: ${item.ingredients}</span>
+            </p>
+
+            <div style="display:flex; justify-content:space-between; margin-bottom:1rem; background:rgba(0,0,0,0.2); padding:0.5rem 0.75rem; border-radius:8px; font-size:0.85rem;">
+              <span>Price: <strong style="color:#34d399;">${item.price}</strong></span>
+              <span>Prep: <strong style="color:#38bdf8;">${item.prep}</strong></span>
+            </div>
+
+            <div class="fruit-card-actions">
+              <a href="fruit.html?id=${item.fruitId}" class="btn btn-primary" style="font-size: 0.82rem;">
+                View ${item.fruitName} Page →
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+  </script>
+</body>
+</html>

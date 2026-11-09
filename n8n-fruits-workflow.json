@@ -1,0 +1,280 @@
+{
+  "name": "Fruits Emporium - Observability & Actions Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fruits-action",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "e44d32a8-f7eb-44c6-8a7f-d31e5f8f01a1",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        300
+      ],
+      "webhookId": "fruits-action"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.body.event }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "order_fulfillment",
+              "output": 0
+            },
+            {
+              "value2": "catalog_order",
+              "output": 0
+            },
+            {
+              "value2": "inventory_restock_alert",
+              "output": 1
+            },
+            {
+              "value2": "juice_blend_action",
+              "output": 2
+            },
+            {
+              "value2": "salad_toss_action",
+              "output": 2
+            },
+            {
+              "value2": "quality_sensor_breach",
+              "output": 3
+            }
+          ]
+        },
+        "fallbackOutput": 4
+      },
+      "id": "78a1bc4f-4d3a-4b96-9812-70b99812efaa",
+      "name": "Route by Action Event",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "notificationType",
+              "value": "ORDER_CONFIRMATION"
+            },
+            {
+              "name": "summary",
+              "value": "=Order {{ $json.body.data.orderId }} confirmed for {{ $json.body.data.item || $json.body.data.recipeName }} - Total: {{ $json.body.data.price }}"
+            },
+            {
+              "name": "status",
+              "value": "DISPATCHED_TO_KITCHEN"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1bc994ef-65a2-4681-9b11-9a72df894a01",
+      "name": "Process Customer Order",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        740,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "alertLevel",
+              "value": "URGENT"
+            },
+            {
+              "name": "message",
+              "value": "=CRITICAL: Stock for {{ $json.body.data.fruitName }} is down to {{ $json.body.data.currentStockKg }}kg! Triggering supplier PO for {{ $json.body.data.recommendedBatchSizeKg }}kg."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2bc994ef-65a2-4681-9b11-9a72df894a02",
+      "name": "Inventory Restock Alert",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        740,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "kitchenLog",
+              "value": "=Fresh prep recorded: {{ $json.body.data.recipeName || $json.body.data.saladName }} (Fruit: {{ $json.body.data.fruitName }})"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3bc994ef-65a2-4681-9b11-9a72df894a03",
+      "name": "Log Kitchen Prep",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        740,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "incidentCode",
+              "value": "COOLING_FAILURE"
+            },
+            {
+              "name": "alertDetails",
+              "value": "=Temperature anomaly detected: {{ $json.body.data.measuredTempC }}°C in {{ $json.body.data.coldRoom }} (Allowed: {{ $json.body.data.allowedMaxC }}°C)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4bc994ef-65a2-4681-9b11-9a72df894a04",
+      "name": "Quality Incident Handler",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        740,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"message\": \"n8n successfully processed fruit event\",\n  \"event\": \"{{ $('Webhook Trigger').item.json.body.event }}\",\n  \"sessionId\": \"{{ $('Webhook Trigger').item.json.body.sessionId }}\",\n  \"processedAt\": \"{{ $now.toISO() }}\"\n}",
+        "options": {}
+      },
+      "id": "5bc994ef-65a2-4681-9b11-9a72df894a05",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        340
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Route by Action Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Action Event": {
+      "main": [
+        [
+          {
+            "node": "Process Customer Order",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Inventory Restock Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Kitchen Prep",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Quality Incident Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Customer Order": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inventory Restock Alert": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Kitchen Prep": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quality Incident Handler": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
+

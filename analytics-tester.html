@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grafana Faro & n8n Observability Testbed</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://unpkg.com/@grafana/faro-web-sdk@1.4.1/dist/bundle/faro-web-sdk.iife.js" defer></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo-area">
+      <span class="logo-icon">🍍</span>
+      <span class="logo-text">Fruits Emporium</span>
+    </a>
+    
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#categories-section">10 Categories</a></li>
+      <li><a href="recipes.html">Juices & Salads</a></li>
+      <li><a href="analytics-tester.html" class="active">Faro & n8n Testbed</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn btn-secondary" onclick="ModalController.open('settings-modal')">
+        ⚙ Settings
+      </button>
+      <a href="index.html" class="btn btn-primary">
+        ← Home
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header style="margin-bottom: 2rem;">
+      <div class="hero-pill">
+        <span>⚡ Telemetry Control Center</span> • <span>Grafana RUM</span> • <span>n8n Webhooks</span>
+      </div>
+      <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;">
+        Observability & Automation <span class="hero-gradient">Test Laboratory</span>
+      </h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem;">
+        Generate telemetry streams, trigger real errors, simulate network latency, and execute automated n8n webhook pipelines with one click.
+      </p>
+    </header>
+
+    <!-- SECTION 1: Grafana Faro RUM Testing Matrix -->
+    <section class="telemetry-card" style="margin-top: 0; margin-bottom: 2rem;">
+      <div class="section-header" style="margin-bottom: 1rem;">
+        <div>
+          <h2 style="font-size: 1.35rem; color: #fb923c;">🔥 Grafana Faro Frontend Observability</h2>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Trigger synthetic telemetry to populate your Grafana dashboards, logs, and traces.</p>
+        </div>
+        <span class="badge badge-faro">Faro Web SDK</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+        <!-- Card 1 -->
+        <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-color);">
+          <h3 style="font-size: 1rem; margin-bottom: 0.4rem; color: #ef4444;">1. Uncaught JS Exception</h3>
+          <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1rem;">Throws a fatal Error object with full stack trace for Faro error reporting.</p>
+          <button class="btn btn-danger" style="width: 100%; justify-content: center;" onclick="testFaroError()">
+            💥 Throw Exception
+          </button>
+        </div>
+
+        <!-- Card 2 -->
+        <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-color);">
+          <h3 style="font-size: 1rem; margin-bottom: 0.4rem; color: #f59e0b;">2. Unhandled Promise Rejection</h3>
+          <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1rem;">Rejects an asynchronous promise without catch block.</p>
+          <button class="btn btn-secondary" style="width: 100%; justify-content: center; border-color: #f59e0b; color: #f59e0b;" onclick="testUnhandledRejection()">
+            ⚠ Reject Promise
+          </button>
+        </div>
+
+        <!-- Card 3 -->
+        <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-color);">
+          <h3 style="font-size: 1rem; margin-bottom: 0.4rem; color: #38bdf8;">3. Web Vitals / Measurements</h3>
+          <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1rem;">Emits synthetic TTFB, LCP, and CLS performance metrics.</p>
+          <button class="btn btn-secondary" style="width: 100%; justify-content: center; border-color: #38bdf8; color: #38bdf8;" onclick="testFaroMeasurements()">
+            📊 Push Measurements
+          </button>
+        </div>
+
+        <!-- Card 4 -->
+        <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-color);">
+          <h3 style="font-size: 1rem; margin-bottom: 0.4rem; color: #10b981;">4. User Session Context</h3>
+          <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1rem;">Attaches VIP user attributes and telemetry tags to the session.</p>
+          <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="testUserContext()">
+            👤 Tag User Session
+          </button>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <button class="btn btn-faro" onclick="testEventBurst()">
+          ⚡ Fire 5-Event Rapid Burst
+        </button>
+        <button class="btn btn-secondary" onclick="testNetworkFetch(200, 400)">
+          🌐 HTTP 200 Fetch (400ms)
+        </button>
+        <button class="btn btn-secondary" onclick="testNetworkFetch(404, 300)">
+          🌐 HTTP 404 Fetch (300ms)
+        </button>
+        <button class="btn btn-secondary" onclick="testNetworkFetch(500, 800)">
+          🌐 HTTP 500 Server Error (800ms)
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 2: n8n Workflow Automation Workbench -->
+    <section class="telemetry-card" style="margin-top: 0; border-color: rgba(236, 72, 153, 0.4);">
+      <div class="section-header" style="margin-bottom: 1rem;">
+        <div>
+          <h2 style="font-size: 1.35rem; color: #f472b6;">🚀 n8n Automation & Webhook Dispatcher</h2>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Trigger pre-built or custom JSON payloads directly to your n8n workflows.</p>
+        </div>
+        <span class="badge badge-n8n">n8n Webhook</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <!-- Pre-built Scenarios -->
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <h4 style="font-size: 0.95rem; color: #f8fafc;">Pre-configured Demo Scenarios</h4>
+          
+          <button class="btn btn-n8n" style="justify-content: space-between;" onclick="triggerScenario('inventory_low_alert')">
+            <span>📦 Low Inventory Alert (Mango & Pineapple)</span>
+            <span>Trigger →</span>
+          </button>
+
+          <button class="btn btn-n8n" style="justify-content: space-between;" onclick="triggerScenario('vip_order_checkout')">
+            <span>💳 High-Value VIP Juice Order ($84.50)</span>
+            <span>Trigger →</span>
+          </button>
+
+          <button class="btn btn-n8n" style="justify-content: space-between;" onclick="triggerScenario('quality_sensor_breach')">
+            <span>🌡 Cold-Room Temperature Spike (14°C)</span>
+            <span>Trigger →</span>
+          </button>
+
+          <button class="btn btn-n8n" style="justify-content: space-between;" onclick="triggerScenario('daily_kitchen_summary')">
+            <span>📑 Daily Kitchen Prep Summary Request</span>
+            <span>Trigger →</span>
+          </button>
+        </div>
+
+        <!-- Custom Payload Editor -->
+        <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 12px; display: flex; flex-direction: column;">
+          <h4 style="font-size: 0.95rem; color: #38bdf8; margin-bottom: 0.5rem;">Custom JSON Webhook Payload</h4>
+          <textarea id="custom-json-input" class="form-textarea" style="flex-grow: 1; min-height: 140px; font-family: monospace; font-size: 0.8rem; margin-bottom: 0.75rem;">
+{
+  "event": "custom_agent_test",
+  "priority": "HIGH",
+  "sampleFruit": "dragonfruit",
+  "metric": 99.4,
+  "notes": "Testing n8n webhook listener from Fruits Emporium"
+}</textarea>
+          <button class="btn btn-primary" onclick="sendCustomJson()">
+            🚀 Send Custom JSON to n8n Webhook
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Live Telemetry Drawer (Docked at Bottom) -->
+  <div class="telemetry-drawer" id="telemetry-drawer">
+    <div class="telemetry-bar">
+      <div class="telemetry-status-summary">
+        <span class="status-dot active-stream"></span>
+        <span style="font-weight: 700; color: #f8fafc;">Live Telemetry & Webhook Monitor</span>
+        <span style="color: #94a3b8; font-size: 0.8rem;" id="telemetry-count">0 events</span>
+      </div>
+      <div style="display: flex; gap: 0.75rem;">
+        <button id="telemetry-clear-btn" class="btn btn-secondary" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">Clear Log</button>
+        <button id="telemetry-toggle-btn" class="btn btn-secondary" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">▼ Minimize</button>
+      </div>
+    </div>
+    <div class="telemetry-log-pane" id="telemetry-log-pane">
+      <div style="color: #64748b; font-style: italic;">Monitoring live user clicks, Faro telemetry, errors, and n8n webhooks...</div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="ModalController.close('settings-modal')">&times;</button>
+      <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">⚙ Telemetry & Automation Settings</h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">
+        Configure your Grafana Faro collector URL and n8n webhook endpoint.
+      </p>
+
+      <div class="form-group">
+        <label class="form-label">Grafana Faro Collector URL</label>
+        <input type="url" id="settings-faro-url" class="form-input" placeholder="https://faro-collector.example.com/collect">
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-group">
+          <label class="form-label">App Name</label>
+          <input type="text" id="settings-faro-app" class="form-input" value="fruits-emporium">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Environment</label>
+          <input type="text" id="settings-faro-env" class="form-input" value="production">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">n8n Webhook URL</label>
+        <input type="url" id="settings-n8n-url" class="form-input" placeholder="https://n8n.your-server.com/webhook/fruits-action">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">n8n Authorization Header (Optional)</label>
+        <input type="text" id="settings-n8n-token" class="form-input" placeholder="Bearer my-secret-token">
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+        <button class="btn btn-secondary" onclick="ModalController.close('settings-modal')">Cancel</button>
+        <button class="btn btn-primary" id="btn-save-settings">Save Configurations</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/fruits-data.js"></script>
+  <script src="js/faro-integration.js"></script>
+  <script src="js/n8n-integration.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    function testFaroError() {
+      const err = new Error("DatabaseConnectionTimeout: Could not reach Fruit Inventory Shard #3");
+      if (window.FaroClient) {
+        window.FaroClient.trackError(err, { component: "inventory_cluster", severity: "CRITICAL" });
+      }
+      window.showToast("Captured Error: " + err.message, "error");
+    }
+
+    function testUnhandledRejection() {
+      window.showToast("Triggering Unhandled Promise Rejection...", "warning");
+      new Promise((_, reject) => {
+        setTimeout(() => {
+          reject(new Error("AsyncPaymentGatewayTimeout: Stripe/Webhook handshake failed after 5000ms"));
+        }, 100);
+      });
+    }
+
+    function testFaroMeasurements() {
+      if (window.FaroClient) {
+        window.FaroClient.trackMeasurement("ttfb_ms", Math.floor(Math.random() * 80) + 40);
+        window.FaroClient.trackMeasurement("lcp_ms", Math.floor(Math.random() * 600) + 800);
+        window.FaroClient.trackMeasurement("cls_score", 0.04);
+      }
+      window.showToast("Web Vitals (TTFB, LCP, CLS) measurements pushed!", "success");
+    }
+
+    function testUserContext() {
+      const userId = "usr_vip_" + Math.floor(1000 + Math.random() * 9000);
+      if (window.FaroClient) {
+        window.FaroClient.trackEvent("user_identified", {
+          userId,
+          userTier: "ENTERPRISE_VIP",
+          region: "us-central1",
+          loyaltyPoints: 4850
+        });
+      }
+      window.showToast(`User session tagged as: ${userId}`, "success");
+    }
+
+    function testEventBurst() {
+      const events = ["view_banner", "add_to_cart", "apply_coupon", "calculate_shipping", "checkout_step_1"];
+      events.forEach((ev, idx) => {
+        setTimeout(() => {
+          if (window.FaroClient) {
+            window.FaroClient.trackEvent(ev, { sequence: idx + 1, burstId: "burst_" + Date.now() });
+          }
+        }, idx * 150);
+      });
+      window.showToast("Fired 5 telemetry events in rapid sequence!", "info");
+    }
+
+    function testNetworkFetch(status, delayMs) {
+      const start = performance.now();
+      window.showToast(`Simulating HTTP ${status} request (${delayMs}ms)...`, "info");
+
+      setTimeout(() => {
+        const duration = Math.round(performance.now() - start);
+        if (status >= 400) {
+          const err = new Error(`HTTP Error ${status}: Server responded with failure at /api/fruits`);
+          if (window.FaroClient) {
+            window.FaroClient.trackError(err, { status, latency_ms: duration });
+          }
+          window.showToast(`Request Failed: HTTP ${status} (${duration}ms)`, "error");
+        } else {
+          if (window.FaroClient) {
+            window.FaroClient.trackEvent("api_call_success", { status, latency_ms: duration, endpoint: "/api/fruits" });
+          }
+          window.showToast(`Request Success: HTTP ${status} (${duration}ms)`, "success");
+        }
+      }, delayMs);
+    }
+
+    function triggerScenario(scenario) {
+      const payloads = {
+        inventory_low_alert: {
+          alert: "CRITICAL_LOW_STOCK",
+          items: [
+            { fruit: "mango", currentKg: 3.4, reorderThreshold: 25 },
+            { fruit: "pineapple", currentKg: 5.1, reorderThreshold: 30 }
+          ],
+          warehouse: "Zone-B-Cooler"
+        },
+        vip_order_checkout: {
+          orderId: "VIP-9941",
+          customer: "Elena Rostova",
+          totalAmount: 84.50,
+          items: ["Spiced Apple Cider x4", "Royal Mango Lassi x4", "Greek Watermelon Salad x2"],
+          vipStatus: "DIAMOND"
+        },
+        quality_sensor_breach: {
+          sensorId: "TEMP-SENS-09",
+          coldRoom: "Fruit Cellar #2",
+          measuredTempC: 14.2,
+          allowedMaxC: 4.0,
+          status: "COOLING_FAILURE"
+        },
+        daily_kitchen_summary: {
+          date: new Date().toISOString().split("T")[0],
+          totalJuicesOrdered: 142,
+          totalSaladsTossed: 89,
+          topSellingFruit: "Alphonso Mango"
+        }
+      };
+
+      window.N8nClient.dispatch(scenario, payloads[scenario]);
+    }
+
+    function sendCustomJson() {
+      const raw = document.getElementById("custom-json-input").value;
+      try {
+        const parsed = JSON.parse(raw);
+        window.N8nClient.dispatch("custom_payload_event", parsed);
+      } catch (e) {
+        window.showToast("Invalid JSON syntax: " + e.message, "error");
+      }
+    }
+  </script>
+</body>
+</html>
+

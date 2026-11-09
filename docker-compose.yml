@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  fruits-site:
+    build: .
+    container_name: fruits-emporium-web
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+
