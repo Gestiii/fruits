@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,13 +6,45 @@
   <title>Grafana Faro & n8n Observability Testbed</title>
   <link rel="stylesheet" href="css/styles.css?v=2.0">
   <script src="https://unpkg.com/@grafana/faro-web-sdk@1.4.1/dist/bundle/faro-web-sdk.iife.js" defer></script>
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="mh bh wh xh init Xh ed Gh Jh od ac Yh ad Uh fd pd gd md yd bd capture getExtension nd mr Zh Kh calculateEventProperties wd register register_once register_for_session unregister unregister_for_session Cd Vh Sd getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Td identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset Id shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty xd hd createPersonProfile setInternalOrTestUser $d Ih Ch opt_in_capturing opt_out_capturing Th has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing ld debug lc Fs getPageViewId captureTraceFeedback captureTraceMetric qh".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_mqWrgqyaQuXFMMBJpJ5L3QSjPTqmGsGf9A7tsVLkEkCv', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+</script>
+<script>
+  // 1. Grab email and user ID from the URL (?email=...&uid=...)
+  const urlParams = new URLSearchParams(window.location.search);
+  const userEmail = urlParams.get('email') || localStorage.getItem('user_email');
+  const userId    = urlParams.get('uid')   || localStorage.getItem('user_id');
+
+  // 2. If an email is present, save it and identify the user in PostHog
+  if (userEmail && window.posthog) {
+    localStorage.setItem('user_email', userEmail);
+    if (userId) localStorage.setItem('user_id', userId);
+
+    // Stitches all past, current, and future session recordings & clicks to this email
+    posthog.identify(userEmail, {
+      email: userEmail,
+      user_id: userId || userEmail
+    });
+
+    // Log that this person arrived from an email link
+    posthog.capture('opened_from_email', {
+      email: userEmail,
+      page: window.location.pathname
+    });
+  }
+</script>
 </head>
 <body>
 
   <!-- Navigation Bar -->
   <nav class="navbar">
     <a href="index.html" class="logo-area">
-      <span class="logo-icon">🍍</span>
+      <span class="logo-icon">ðŸ</span>
       <span class="logo-text">Fruits Emporium</span>
     </a>
     
@@ -25,10 +57,10 @@
 
     <div class="nav-actions">
       <button class="btn btn-secondary" onclick="ModalController.open('settings-modal')">
-        ⚙ Settings
+        âš™ Settings
       </button>
       <a href="index.html" class="btn btn-primary">
-        ← Home
+        â† Home
       </a>
     </div>
   </nav>
@@ -36,7 +68,7 @@
   <div class="container">
     <header style="margin-bottom: 2rem;">
       <div class="hero-pill">
-        <span>⚡ Telemetry Control Center</span> • <span>Grafana RUM</span> • <span>n8n Webhooks</span>
+        <span>âš¡ Telemetry Control Center</span> â€¢ <span>Grafana RUM</span> â€¢ <span>n8n Webhooks</span>
       </div>
       <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;">
         Observability & Automation <span class="hero-gradient">Test Laboratory</span>
@@ -50,7 +82,7 @@
     <section class="telemetry-card" style="margin-top: 0; margin-bottom: 2rem;">
       <div class="section-header" style="margin-bottom: 1rem;">
         <div>
-          <h2 style="font-size: 1.35rem; color: #fb923c;">🔥 Grafana Faro Frontend Observability</h2>
+          <h2 style="font-size: 1.35rem; color: #fb923c;">ðŸ”¥ Grafana Faro Frontend Observability</h2>
           <p style="color: var(--text-muted); font-size: 0.88rem;">Trigger synthetic telemetry to populate your Grafana dashboards, logs, and traces.</p>
         </div>
         <span class="badge badge-faro">Faro Web SDK</span>
@@ -62,7 +94,7 @@
           <h3 style="font-size: 1rem; margin-bottom: 0.4rem; color: #ef4444;">1. Uncaught JS Exception</h3>
           <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1rem;">Throws a fatal Error object with full stack trace for Faro error reporting.</p>
           <button class="btn btn-danger" style="width: 100%; justify-content: center;" onclick="testFaroError()">
-            💥 Throw Exception
+            ðŸ’¥ Throw Exception
           </button>
         </div>
 
@@ -71,7 +103,7 @@
           <h3 style="font-size: 1rem; margin-bottom: 0.4rem; color: #f59e0b;">2. Unhandled Promise Rejection</h3>
           <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1rem;">Rejects an asynchronous promise without catch block.</p>
           <button class="btn btn-secondary" style="width: 100%; justify-content: center; border-color: #f59e0b; color: #f59e0b;" onclick="testUnhandledRejection()">
-            ⚠ Reject Promise
+            âš  Reject Promise
           </button>
         </div>
 
@@ -80,7 +112,7 @@
           <h3 style="font-size: 1rem; margin-bottom: 0.4rem; color: #38bdf8;">3. Web Vitals / Measurements</h3>
           <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1rem;">Emits synthetic TTFB, LCP, and CLS performance metrics.</p>
           <button class="btn btn-secondary" style="width: 100%; justify-content: center; border-color: #38bdf8; color: #38bdf8;" onclick="testFaroMeasurements()">
-            📊 Push Measurements
+            ðŸ“Š Push Measurements
           </button>
         </div>
 
@@ -89,23 +121,23 @@
           <h3 style="font-size: 1rem; margin-bottom: 0.4rem; color: #10b981;">4. User Session Context</h3>
           <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1rem;">Attaches VIP user attributes and telemetry tags to the session.</p>
           <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="testUserContext()">
-            👤 Tag User Session
+            ðŸ‘¤ Tag User Session
           </button>
         </div>
       </div>
 
       <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
         <button class="btn btn-faro" onclick="testEventBurst()">
-          ⚡ Fire 5-Event Rapid Burst
+          âš¡ Fire 5-Event Rapid Burst
         </button>
         <button class="btn btn-secondary" onclick="testNetworkFetch(200, 400)">
-          🌐 HTTP 200 Fetch (400ms)
+          ðŸŒ HTTP 200 Fetch (400ms)
         </button>
         <button class="btn btn-secondary" onclick="testNetworkFetch(404, 300)">
-          🌐 HTTP 404 Fetch (300ms)
+          ðŸŒ HTTP 404 Fetch (300ms)
         </button>
         <button class="btn btn-secondary" onclick="testNetworkFetch(500, 800)">
-          🌐 HTTP 500 Server Error (800ms)
+          ðŸŒ HTTP 500 Server Error (800ms)
         </button>
       </div>
     </section>
@@ -114,7 +146,7 @@
     <section class="telemetry-card" style="margin-top: 0; border-color: rgba(236, 72, 153, 0.4);">
       <div class="section-header" style="margin-bottom: 1rem;">
         <div>
-          <h2 style="font-size: 1.35rem; color: #f472b6;">🚀 n8n Automation & Webhook Dispatcher</h2>
+          <h2 style="font-size: 1.35rem; color: #f472b6;">ðŸš€ n8n Automation & Webhook Dispatcher</h2>
           <p style="color: var(--text-muted); font-size: 0.88rem;">Trigger pre-built or custom JSON payloads directly to your n8n workflows.</p>
         </div>
         <span class="badge badge-n8n">n8n Webhook</span>
@@ -126,23 +158,23 @@
           <h4 style="font-size: 0.95rem; color: #f8fafc;">Pre-configured Demo Scenarios</h4>
           
           <button class="btn btn-n8n" style="justify-content: space-between;" onclick="triggerScenario('inventory_low_alert')">
-            <span>📦 Low Inventory Alert (Mango & Pineapple)</span>
-            <span>Trigger →</span>
+            <span>ðŸ“¦ Low Inventory Alert (Mango & Pineapple)</span>
+            <span>Trigger â†’</span>
           </button>
 
           <button class="btn btn-n8n" style="justify-content: space-between;" onclick="triggerScenario('vip_order_checkout')">
-            <span>💳 High-Value VIP Juice Order ($84.50)</span>
-            <span>Trigger →</span>
+            <span>ðŸ’³ High-Value VIP Juice Order ($84.50)</span>
+            <span>Trigger â†’</span>
           </button>
 
           <button class="btn btn-n8n" style="justify-content: space-between;" onclick="triggerScenario('quality_sensor_breach')">
-            <span>🌡 Cold-Room Temperature Spike (14°C)</span>
-            <span>Trigger →</span>
+            <span>ðŸŒ¡ Cold-Room Temperature Spike (14Â°C)</span>
+            <span>Trigger â†’</span>
           </button>
 
           <button class="btn btn-n8n" style="justify-content: space-between;" onclick="triggerScenario('daily_kitchen_summary')">
-            <span>📑 Daily Kitchen Prep Summary Request</span>
-            <span>Trigger →</span>
+            <span>ðŸ“‘ Daily Kitchen Prep Summary Request</span>
+            <span>Trigger â†’</span>
           </button>
         </div>
 
@@ -158,7 +190,7 @@
   "notes": "Testing n8n webhook listener from Fruits Emporium"
 }</textarea>
           <button class="btn btn-primary" onclick="sendCustomJson()">
-            🚀 Send Custom JSON to n8n Webhook
+            ðŸš€ Send Custom JSON to n8n Webhook
           </button>
         </div>
       </div>
@@ -176,7 +208,7 @@
       </div>
       <div style="display: flex; gap: 0.75rem;">
         <button id="telemetry-clear-btn" class="btn btn-secondary" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">Clear Log</button>
-        <button id="telemetry-toggle-btn" class="btn btn-secondary" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">▼ Minimize</button>
+        <button id="telemetry-toggle-btn" class="btn btn-secondary" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">â–¼ Minimize</button>
       </div>
     </div>
     <div class="telemetry-log-pane" id="telemetry-log-pane">
@@ -188,7 +220,7 @@
   <div class="modal-overlay" id="settings-modal">
     <div class="modal-content">
       <button class="modal-close" onclick="ModalController.close('settings-modal')">&times;</button>
-      <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">⚙ Telemetry & Automation Settings</h3>
+      <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">âš™ Telemetry & Automation Settings</h3>
       <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">
         Configure your Grafana Faro collector URL and n8n webhook endpoint.
       </p>
@@ -352,4 +384,5 @@
   </script>
 </body>
 </html>
+
 

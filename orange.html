@@ -1,18 +1,50 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🍊 Sunburst Orange - Dedicated Fruit Page - Fruits Emporium</title>
+  <title>ðŸŠ Sunburst Orange - Dedicated Fruit Page - Fruits Emporium</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/styles.css?v=2.0">
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="mh bh wh xh init Xh ed Gh Jh od ac Yh ad Uh fd pd gd md yd bd capture getExtension nd mr Zh Kh calculateEventProperties wd register register_once register_for_session unregister unregister_for_session Cd Vh Sd getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Td identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset Id shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty xd hd createPersonProfile setInternalOrTestUser $d Ih Ch opt_in_capturing opt_out_capturing Th has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing ld debug lc Fs getPageViewId captureTraceFeedback captureTraceMetric qh".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_mqWrgqyaQuXFMMBJpJ5L3QSjPTqmGsGf9A7tsVLkEkCv', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+</script>
+<script>
+  // 1. Grab email and user ID from the URL (?email=...&uid=...)
+  const urlParams = new URLSearchParams(window.location.search);
+  const userEmail = urlParams.get('email') || localStorage.getItem('user_email');
+  const userId    = urlParams.get('uid')   || localStorage.getItem('user_id');
+
+  // 2. If an email is present, save it and identify the user in PostHog
+  if (userEmail && window.posthog) {
+    localStorage.setItem('user_email', userEmail);
+    if (userId) localStorage.setItem('user_id', userId);
+
+    // Stitches all past, current, and future session recordings & clicks to this email
+    posthog.identify(userEmail, {
+      email: userEmail,
+      user_id: userId || userEmail
+    });
+
+    // Log that this person arrived from an email link
+    posthog.capture('opened_from_email', {
+      email: userEmail,
+      page: window.location.pathname
+    });
+  }
+</script>
 </head>
 <body>
 
   <!-- Navigation Bar -->
   <nav class="navbar">
     <a href="index.html" class="logo-area">
-      <span class="logo-icon">🍍</span>
+      <span class="logo-icon">ðŸ</span>
       <span class="logo-text">Fruits Emporium</span>
     </a>
     <ul class="nav-links">
@@ -21,36 +53,36 @@
       <li><a href="recipes.html">Juices & Salads</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="index.html" class="btn btn-secondary">← Back to All Fruits</a>
+      <a href="index.html" class="btn btn-secondary">â† Back to All Fruits</a>
     </div>
   </nav>
 
   <div class="container">
     <!-- Horizontal 10 Fruit Pill Bar -->
     <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; margin-bottom: 0.6rem; text-transform: uppercase;">
-      ⚡ Switch Fruit Page:
+      âš¡ Switch Fruit Page:
     </div>
     <div class="category-pill-strip">
-      <a href="apple.html" class="category-pill"><span>🍎</span> <span>Apple</span></a>
-      <a href="banana.html" class="category-pill"><span>🍌</span> <span>Banana</span></a>
-      <a href="orange.html" class="category-pill active"><span>🍊</span> <span>Orange</span></a>
-      <a href="mango.html" class="category-pill"><span>🥭</span> <span>Mango</span></a>
-      <a href="strawberry.html" class="category-pill"><span>🍓</span> <span>Strawberry</span></a>
-      <a href="blueberry.html" class="category-pill"><span>🫐</span> <span>Blueberry</span></a>
-      <a href="pineapple.html" class="category-pill"><span>🍍</span> <span>Pineapple</span></a>
-      <a href="watermelon.html" class="category-pill"><span>🍉</span> <span>Watermelon</span></a>
-      <a href="peach.html" class="category-pill"><span>🍑</span> <span>Peach</span></a>
-      <a href="grape.html" class="category-pill"><span>🍇</span> <span>Grape</span></a>
+      <a href="apple.html" class="category-pill"><span>ðŸŽ</span> <span>Apple</span></a>
+      <a href="banana.html" class="category-pill"><span>ðŸŒ</span> <span>Banana</span></a>
+      <a href="orange.html" class="category-pill active"><span>ðŸŠ</span> <span>Orange</span></a>
+      <a href="mango.html" class="category-pill"><span>ðŸ¥­</span> <span>Mango</span></a>
+      <a href="strawberry.html" class="category-pill"><span>ðŸ“</span> <span>Strawberry</span></a>
+      <a href="blueberry.html" class="category-pill"><span>ðŸ«</span> <span>Blueberry</span></a>
+      <a href="pineapple.html" class="category-pill"><span>ðŸ</span> <span>Pineapple</span></a>
+      <a href="watermelon.html" class="category-pill"><span>ðŸ‰</span> <span>Watermelon</span></a>
+      <a href="peach.html" class="category-pill"><span>ðŸ‘</span> <span>Peach</span></a>
+      <a href="grape.html" class="category-pill"><span>ðŸ‡</span> <span>Grape</span></a>
     </div>
 
     <!-- Orange Hero Banner -->
     <section class="fruit-hero-banner" style="border-top: 4px solid #f97316;">
-      <div class="fruit-hero-icon">🍊</div>
+      <div class="fruit-hero-icon">ðŸŠ</div>
       <div class="fruit-hero-info">
         <div class="fruit-hero-tags">
           <span class="badge badge-green">Citrus Category</span>
-          <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">📍 Valencia, Spain</span>
-          <span class="badge" style="background: rgba(249, 115, 22, 0.2); color: #fb923c;">🗓 Winter / Spring</span>
+          <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">ðŸ“ Valencia, Spain</span>
+          <span class="badge" style="background: rgba(249, 115, 22, 0.2); color: #fb923c;">ðŸ—“ Winter / Spring</span>
         </div>
         <h1 class="fruit-hero-title">Sunburst Orange</h1>
         <p class="fruit-hero-desc">
@@ -87,7 +119,7 @@
       <!-- Juice Workshop -->
       <div class="feature-box" id="juices">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
-          <h3>🍹 Orange Juices & Elixirs</h3>
+          <h3>ðŸ¹ Orange Juices & Elixirs</h3>
           <span class="badge" style="background:#f59e0b; color:#fff;">Citrus</span>
         </div>
         <p>Hand-pressed Valencia citrus juices with spicy ginger and turmeric root.</p>
@@ -97,16 +129,16 @@
         </div>
         <div class="item-btn-list">
           <button class="item-action-btn" onclick="showToast('Ordered: Fresh-Squeezed Valencia Orange Juice - $4.75', 'success')">
-            <span>🍹 Fresh-Squeezed Valencia Orange Juice</span>
-            <span class="item-price-tag">$4.75 • Order</span>
+            <span>ðŸ¹ Fresh-Squeezed Valencia Orange Juice</span>
+            <span class="item-price-tag">$4.75 â€¢ Order</span>
           </button>
           <button class="item-action-btn" onclick="showToast('Ordered: Zesty Orange Ginger Immunity Elixir - $6.25', 'success')">
-            <span>🧃 Zesty Orange Ginger Immunity Elixir</span>
-            <span class="item-price-tag">$6.25 • Order</span>
+            <span>ðŸ§ƒ Zesty Orange Ginger Immunity Elixir</span>
+            <span class="item-price-tag">$6.25 â€¢ Order</span>
           </button>
           <button class="item-action-btn" onclick="showToast('Ordered: Blood Orange & Rosemary Spritz - $5.95', 'success')">
-            <span>🍷 Blood Orange & Rosemary Spritz</span>
-            <span class="item-price-tag">$5.95 • Order</span>
+            <span>ðŸ· Blood Orange & Rosemary Spritz</span>
+            <span class="item-price-tag">$5.95 â€¢ Order</span>
           </button>
         </div>
 
@@ -118,33 +150,33 @@
           <li><span>Handful of crushed glacier ice</span> <span>Chilled</span></li>
         </ul>
         <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="showToast('Pressed fresh Valencia Citrus & Ginger Juice!', 'success')">
-          🍹 Squeeze & Serve Fresh Orange Juice
+          ðŸ¹ Squeeze & Serve Fresh Orange Juice
         </button>
       </div>
 
       <!-- Salad Kitchen -->
       <div class="feature-box" id="salads">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
-          <h3>🥗 Mediterranean Citrus Salads</h3>
+          <h3>ðŸ¥— Mediterranean Citrus Salads</h3>
           <span class="badge" style="background:#84cc16; color:#0f172a; font-weight:800;">Mediterranean</span>
         </div>
-        <p>Shaved sweet fennel bulbs, Kalamata olives, and fresh jewel orange suprêmes.</p>
+        <p>Shaved sweet fennel bulbs, Kalamata olives, and fresh jewel orange suprÃªmes.</p>
 
         <div style="font-size: 0.8rem; font-weight:700; color:#84cc16; text-transform:uppercase; margin-bottom:0.5rem;">
           Click Button to Order Item:
         </div>
         <div class="item-btn-list">
           <button class="item-action-btn" onclick="showToast('Ordered: Sicilian Orange, Fennel & Kalamata Salad - $10.50', 'success')">
-            <span>🥗 Sicilian Orange, Fennel & Kalamata Salad</span>
-            <span class="item-price-tag">$10.50 • Order</span>
+            <span>ðŸ¥— Sicilian Orange, Fennel & Kalamata Salad</span>
+            <span class="item-price-tag">$10.50 â€¢ Order</span>
           </button>
           <button class="item-action-btn" onclick="showToast('Ordered: Citrus Mint & Wild Honey Fruit Cup - $4.80', 'success')">
-            <span>🥣 Citrus Mint & Wild Honey Fruit Cup</span>
-            <span class="item-price-tag">$4.80 • Order</span>
+            <span>ðŸ¥£ Citrus Mint & Wild Honey Fruit Cup</span>
+            <span class="item-price-tag">$4.80 â€¢ Order</span>
           </button>
           <button class="item-action-btn" onclick="showToast('Ordered: Beetroot & Blood Orange Carpaccio - $11.75', 'success')">
-            <span>🌿 Beetroot & Blood Orange Carpaccio</span>
-            <span class="item-price-tag">$11.75 • Order</span>
+            <span>ðŸŒ¿ Beetroot & Blood Orange Carpaccio</span>
+            <span class="item-price-tag">$11.75 â€¢ Order</span>
           </button>
         </div>
 
@@ -156,7 +188,7 @@
           <li><span>Cold-pressed extra virgin olive oil</span> <span>Olive Oil</span></li>
         </ul>
         <button class="btn btn-secondary" style="width:100%; justify-content:center; border-color:#84cc16; color:#84cc16;" onclick="showToast('Plated Sicilian Orange & Fennel Salad!', 'success')">
-          🥗 Toss & Plate Orange Salad
+          ðŸ¥— Toss & Plate Orange Salad
         </button>
       </div>
     </div>
@@ -164,7 +196,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">🍍 Fruits Emporium</p>
+      <p style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">ðŸ Fruits Emporium</p>
       <p>10 Fresh Fruit Categories, Handcrafted Cold-Pressed Juices & Gourmet Fruit Salads.</p>
     </div>
   </footer>
@@ -172,4 +204,5 @@
   <script src="js/app.js"></script>
 </body>
 </html>
+
 

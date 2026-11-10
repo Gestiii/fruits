@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,13 +6,45 @@
   <title>Juices & Salads Menu - Fruits Emporium</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/styles.css?v=2.0">
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="mh bh wh xh init Xh ed Gh Jh od ac Yh ad Uh fd pd gd md yd bd capture getExtension nd mr Zh Kh calculateEventProperties wd register register_once register_for_session unregister unregister_for_session Cd Vh Sd getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Td identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset Id shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty xd hd createPersonProfile setInternalOrTestUser $d Ih Ch opt_in_capturing opt_out_capturing Th has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing ld debug lc Fs getPageViewId captureTraceFeedback captureTraceMetric qh".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_mqWrgqyaQuXFMMBJpJ5L3QSjPTqmGsGf9A7tsVLkEkCv', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+</script>
+<script>
+  // 1. Grab email and user ID from the URL (?email=...&uid=...)
+  const urlParams = new URLSearchParams(window.location.search);
+  const userEmail = urlParams.get('email') || localStorage.getItem('user_email');
+  const userId    = urlParams.get('uid')   || localStorage.getItem('user_id');
+
+  // 2. If an email is present, save it and identify the user in PostHog
+  if (userEmail && window.posthog) {
+    localStorage.setItem('user_email', userEmail);
+    if (userId) localStorage.setItem('user_id', userId);
+
+    // Stitches all past, current, and future session recordings & clicks to this email
+    posthog.identify(userEmail, {
+      email: userEmail,
+      user_id: userId || userEmail
+    });
+
+    // Log that this person arrived from an email link
+    posthog.capture('opened_from_email', {
+      email: userEmail,
+      page: window.location.pathname
+    });
+  }
+</script>
 </head>
 <body>
 
   <!-- Navigation Bar -->
   <nav class="navbar">
     <a href="index.html" class="logo-area">
-      <span class="logo-icon">🍍</span>
+      <span class="logo-icon">ðŸ</span>
       <span class="logo-text">Fruits Emporium</span>
     </a>
     
@@ -24,7 +56,7 @@
 
     <div class="nav-actions">
       <a href="index.html#categories-section" class="btn btn-secondary">
-        ← Back to All Fruits
+        â† Back to All Fruits
       </a>
     </div>
   </nav>
@@ -32,25 +64,25 @@
   <div class="container">
     <!-- Horizontal 10 Fruit Pill Bar for 2-Way Navigation -->
     <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; margin-bottom: 0.6rem; text-transform: uppercase;">
-      ⚡ Browse by Fruit Category:
+      âš¡ Browse by Fruit Category:
     </div>
     <div class="category-pill-strip">
-      <a href="apple.html" class="category-pill"><span>🍎</span> <span>Apple</span></a>
-      <a href="banana.html" class="category-pill"><span>🍌</span> <span>Banana</span></a>
-      <a href="orange.html" class="category-pill"><span>🍊</span> <span>Orange</span></a>
-      <a href="mango.html" class="category-pill"><span>🥭</span> <span>Mango</span></a>
-      <a href="strawberry.html" class="category-pill"><span>🍓</span> <span>Strawberry</span></a>
-      <a href="blueberry.html" class="category-pill"><span>🫐</span> <span>Blueberry</span></a>
-      <a href="pineapple.html" class="category-pill"><span>🍍</span> <span>Pineapple</span></a>
-      <a href="watermelon.html" class="category-pill"><span>🍉</span> <span>Watermelon</span></a>
-      <a href="peach.html" class="category-pill"><span>🍑</span> <span>Peach</span></a>
-      <a href="grape.html" class="category-pill"><span>🍇</span> <span>Grape</span></a>
+      <a href="apple.html" class="category-pill"><span>ðŸŽ</span> <span>Apple</span></a>
+      <a href="banana.html" class="category-pill"><span>ðŸŒ</span> <span>Banana</span></a>
+      <a href="orange.html" class="category-pill"><span>ðŸŠ</span> <span>Orange</span></a>
+      <a href="mango.html" class="category-pill"><span>ðŸ¥­</span> <span>Mango</span></a>
+      <a href="strawberry.html" class="category-pill"><span>ðŸ“</span> <span>Strawberry</span></a>
+      <a href="blueberry.html" class="category-pill"><span>ðŸ«</span> <span>Blueberry</span></a>
+      <a href="pineapple.html" class="category-pill"><span>ðŸ</span> <span>Pineapple</span></a>
+      <a href="watermelon.html" class="category-pill"><span>ðŸ‰</span> <span>Watermelon</span></a>
+      <a href="peach.html" class="category-pill"><span>ðŸ‘</span> <span>Peach</span></a>
+      <a href="grape.html" class="category-pill"><span>ðŸ‡</span> <span>Grape</span></a>
     </div>
 
     <!-- Page Header & Filter Tabs -->
     <header style="margin-top: 1.5rem; margin-bottom: 2rem;">
       <h1 style="font-size: 2.4rem; font-weight: 800; margin-bottom: 0.5rem;">
-        🍹 Juices & 🥗 Salads Menu
+        ðŸ¹ Juices & ðŸ¥— Salads Menu
       </h1>
       <p style="color: var(--text-muted); font-size: 1.05rem;">
         Handcrafted cold-pressed juices and gourmet fruit salads across all 10 fruit categories. Click any item to order, or click the fruit name to open its dedicated page.
@@ -59,8 +91,8 @@
       <!-- Filter Controls -->
       <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
         <button class="btn btn-primary filter-btn active" onclick="filterCatalog('all', this)">All Items (20)</button>
-        <button class="btn btn-secondary filter-btn" onclick="filterCatalog('juice', this)">🍹 Cold-Pressed Juices (10)</button>
-        <button class="btn btn-secondary filter-btn" onclick="filterCatalog('salad', this)">🥗 Gourmet Salads (10)</button>
+        <button class="btn btn-secondary filter-btn" onclick="filterCatalog('juice', this)">ðŸ¹ Cold-Pressed Juices (10)</button>
+        <button class="btn btn-secondary filter-btn" onclick="filterCatalog('salad', this)">ðŸ¥— Gourmet Salads (10)</button>
       </div>
     </header>
 
@@ -70,15 +102,15 @@
       <!-- 1. Apple Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🍎
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸŽ
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Spiced Honeycrisp Nectar</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="apple.html" style="color: #38bdf8; font-weight:600;">Apple →</a>
+            Base Fruit: <a href="apple.html" style="color: #38bdf8; font-weight:600;">Apple â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Sweet, tangy with warm cinnamon undertones</em><br>
@@ -93,7 +125,7 @@
               Order ($6.50)
             </button>
             <a href="apple.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Apple Page →
+              Apple Page â†’
             </a>
           </div>
         </div>
@@ -102,15 +134,15 @@
       <!-- 2. Apple Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🍎
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸŽ
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Waldorf Apple & Walnut Salad</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="apple.html" style="color: #38bdf8; font-weight:600;">Apple →</a>
+            Base Fruit: <a href="apple.html" style="color: #38bdf8; font-weight:600;">Apple â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Crisp, creamy, savory & nutty</em><br>
@@ -125,7 +157,7 @@
               Order ($9.50)
             </button>
             <a href="apple.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Apple Page →
+              Apple Page â†’
             </a>
           </div>
         </div>
@@ -134,15 +166,15 @@
       <!-- 3. Banana Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🍌
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸŒ
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Velvet Banana & Oat Smoothie</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="banana.html" style="color: #38bdf8; font-weight:600;">Banana →</a>
+            Base Fruit: <a href="banana.html" style="color: #38bdf8; font-weight:600;">Banana â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Creamy, rich, and naturally sweetened</em><br>
@@ -157,7 +189,7 @@
               Order ($5.50)
             </button>
             <a href="banana.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Banana Page →
+              Banana Page â†’
             </a>
           </div>
         </div>
@@ -166,15 +198,15 @@
       <!-- 4. Banana Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🍌
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸŒ
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Caribbean Coconut Banana Bowl</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="banana.html" style="color: #38bdf8; font-weight:600;">Banana →</a>
+            Base Fruit: <a href="banana.html" style="color: #38bdf8; font-weight:600;">Banana â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Tropical, sweet-savory, and refreshing</em><br>
@@ -189,7 +221,7 @@
               Order ($8.99)
             </button>
             <a href="banana.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Banana Page →
+              Banana Page â†’
             </a>
           </div>
         </div>
@@ -198,15 +230,15 @@
       <!-- 5. Orange Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🍊
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸŠ
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Sunrise Citrus & Ginger Elixir</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="orange.html" style="color: #38bdf8; font-weight:600;">Orange →</a>
+            Base Fruit: <a href="orange.html" style="color: #38bdf8; font-weight:600;">Orange â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Bright, punchy, immunity-boosting kick</em><br>
@@ -221,7 +253,7 @@
               Order ($4.75)
             </button>
             <a href="orange.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Orange Page →
+              Orange Page â†’
             </a>
           </div>
         </div>
@@ -230,19 +262,19 @@
       <!-- 6. Orange Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🍊
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸŠ
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Sicilian Orange & Fennel Salad</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="orange.html" style="color: #38bdf8; font-weight:600;">Orange →</a>
+            Base Fruit: <a href="orange.html" style="color: #38bdf8; font-weight:600;">Orange â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Crisp, botanical, salty & peppery</em><br>
-            <span style="color: #64748b; font-size:0.8rem;">Ingredients: Valencia orange suprêmes, shaved Florence fennel, Kalamata olives, EVOO</span>
+            <span style="color: #64748b; font-size:0.8rem;">Ingredients: Valencia orange suprÃªmes, shaved Florence fennel, Kalamata olives, EVOO</span>
           </p>
           <div style="display:flex; justify-content:space-between; margin-bottom:1rem; background:rgba(0,0,0,0.2); padding:0.5rem 0.75rem; border-radius:8px; font-size:0.85rem;">
             <span>Price: <strong style="color:#34d399;">$10.50</strong></span>
@@ -253,7 +285,7 @@
               Order ($10.50)
             </button>
             <a href="orange.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Orange Page →
+              Orange Page â†’
             </a>
           </div>
         </div>
@@ -262,15 +294,15 @@
       <!-- 7. Mango Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🥭
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸ¥­
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Royal Alphonso Mango Lassi</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="mango.html" style="color: #38bdf8; font-weight:600;">Mango →</a>
+            Base Fruit: <a href="mango.html" style="color: #38bdf8; font-weight:600;">Mango â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Velvety, aromatic cardamom & mango cream</em><br>
@@ -285,7 +317,7 @@
               Order ($5.75)
             </button>
             <a href="mango.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Mango Page →
+              Mango Page â†’
             </a>
           </div>
         </div>
@@ -294,15 +326,15 @@
       <!-- 8. Mango Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🥭
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸ¥­
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Thai Spicy Mango & Peanut Salad</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="mango.html" style="color: #38bdf8; font-weight:600;">Mango →</a>
+            Base Fruit: <a href="mango.html" style="color: #38bdf8; font-weight:600;">Mango â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Sweet, sour, spicy, and crunchy</em><br>
@@ -317,7 +349,7 @@
               Order ($11.00)
             </button>
             <a href="mango.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Mango Page →
+              Mango Page â†’
             </a>
           </div>
         </div>
@@ -326,15 +358,15 @@
       <!-- 9. Strawberry Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🍓
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸ“
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Ruby Strawberry Basil Sparkler</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="strawberry.html" style="color: #38bdf8; font-weight:600;">Strawberry →</a>
+            Base Fruit: <a href="strawberry.html" style="color: #38bdf8; font-weight:600;">Strawberry â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Effervescent, aromatic herbal berry crush</em><br>
@@ -349,7 +381,7 @@
               Order ($5.25)
             </button>
             <a href="strawberry.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Strawberry Page →
+              Strawberry Page â†’
             </a>
           </div>
         </div>
@@ -358,15 +390,15 @@
       <!-- 10. Strawberry Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🍓
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸ“
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Spinach & Strawberry Balsamic Salad</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="strawberry.html" style="color: #38bdf8; font-weight:600;">Strawberry →</a>
+            Base Fruit: <a href="strawberry.html" style="color: #38bdf8; font-weight:600;">Strawberry â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Sweet berry harmony with tart balsamic reduction</em><br>
@@ -381,7 +413,7 @@
               Order ($11.50)
             </button>
             <a href="strawberry.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Strawberry Page →
+              Strawberry Page â†’
             </a>
           </div>
         </div>
@@ -390,15 +422,15 @@
       <!-- 11. Blueberry Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🫐
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸ«
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Midnight Indigo Antioxidant Blast</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="blueberry.html" style="color: #38bdf8; font-weight:600;">Blueberry →</a>
+            Base Fruit: <a href="blueberry.html" style="color: #38bdf8; font-weight:600;">Blueberry â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Deep, earthy berry intensity with lemon zest</em><br>
@@ -413,7 +445,7 @@
               Order ($5.95)
             </button>
             <a href="blueberry.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Blueberry Page →
+              Blueberry Page â†’
             </a>
           </div>
         </div>
@@ -422,15 +454,15 @@
       <!-- 12. Blueberry Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🫐
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸ«
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Quinoa, Kale & Wild Blueberry Salad</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="blueberry.html" style="color: #38bdf8; font-weight:600;">Blueberry →</a>
+            Base Fruit: <a href="blueberry.html" style="color: #38bdf8; font-weight:600;">Blueberry â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Nutrient-dense, chewy, earthy, and vibrant</em><br>
@@ -445,7 +477,7 @@
               Order ($12.00)
             </button>
             <a href="blueberry.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Blueberry Page →
+              Blueberry Page â†’
             </a>
           </div>
         </div>
@@ -454,15 +486,15 @@
       <!-- 13. Pineapple Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🍍
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸ
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Maui Gold Pineapple Refresher</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="pineapple.html" style="color: #38bdf8; font-weight:600;">Pineapple →</a>
+            Base Fruit: <a href="pineapple.html" style="color: #38bdf8; font-weight:600;">Pineapple â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Ultra-refreshing sweet tropical burst</em><br>
@@ -477,7 +509,7 @@
               Order ($5.20)
             </button>
             <a href="pineapple.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Pineapple Page →
+              Pineapple Page â†’
             </a>
           </div>
         </div>
@@ -486,19 +518,19 @@
       <!-- 14. Pineapple Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🍍
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸ
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Charred Pineapple & Avocado Bowl</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="pineapple.html" style="color: #38bdf8; font-weight:600;">Pineapple →</a>
+            Base Fruit: <a href="pineapple.html" style="color: #38bdf8; font-weight:600;">Pineapple â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Smoky, spicy, creamy, and tangy</em><br>
-            <span style="color: #64748b; font-size:0.8rem;">Ingredients: Grilled pineapple spears, ripe avocado, jalapeño slices, smoked paprika lime dressing</span>
+            <span style="color: #64748b; font-size:0.8rem;">Ingredients: Grilled pineapple spears, ripe avocado, jalapeÃ±o slices, smoked paprika lime dressing</span>
           </p>
           <div style="display:flex; justify-content:space-between; margin-bottom:1rem; background:rgba(0,0,0,0.2); padding:0.5rem 0.75rem; border-radius:8px; font-size:0.85rem;">
             <span>Price: <strong style="color:#34d399;">$10.95</strong></span>
@@ -509,7 +541,7 @@
               Order ($10.95)
             </button>
             <a href="pineapple.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Pineapple Page →
+              Pineapple Page â†’
             </a>
           </div>
         </div>
@@ -518,15 +550,15 @@
       <!-- 15. Watermelon Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🍉
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸ‰
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Crimson Watermelon Cooler</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="watermelon.html" style="color: #38bdf8; font-weight:600;">Watermelon →</a>
+            Base Fruit: <a href="watermelon.html" style="color: #38bdf8; font-weight:600;">Watermelon â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Subtly sweet, crisp, and ultra-hydrating</em><br>
@@ -541,7 +573,7 @@
               Order ($4.80)
             </button>
             <a href="watermelon.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Watermelon Page →
+              Watermelon Page â†’
             </a>
           </div>
         </div>
@@ -550,15 +582,15 @@
       <!-- 16. Watermelon Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🍉
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸ‰
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Greek Watermelon & Feta Salad</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="watermelon.html" style="color: #38bdf8; font-weight:600;">Watermelon →</a>
+            Base Fruit: <a href="watermelon.html" style="color: #38bdf8; font-weight:600;">Watermelon â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Salty-sweet perfection with cooling herbs</em><br>
@@ -573,7 +605,7 @@
               Order ($9.80)
             </button>
             <a href="watermelon.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Watermelon Page →
+              Watermelon Page â†’
             </a>
           </div>
         </div>
@@ -582,15 +614,15 @@
       <!-- 17. Peach Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🍑
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸ‘
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Bellini Peach Nectar Sparkler</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="peach.html" style="color: #38bdf8; font-weight:600;">Peach →</a>
+            Base Fruit: <a href="peach.html" style="color: #38bdf8; font-weight:600;">Peach â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Floral, lush, botanical nectar fizz</em><br>
@@ -605,7 +637,7 @@
               Order ($5.50)
             </button>
             <a href="peach.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Peach Page →
+              Peach Page â†’
             </a>
           </div>
         </div>
@@ -614,15 +646,15 @@
       <!-- 18. Peach Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🍑
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸ‘
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Grilled Peach & Burrata Salad</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="peach.html" style="color: #38bdf8; font-weight:600;">Peach →</a>
+            Base Fruit: <a href="peach.html" style="color: #38bdf8; font-weight:600;">Peach â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Decadent, creamy, savory, and smoky-sweet</em><br>
@@ -637,7 +669,7 @@
               Order ($13.50)
             </button>
             <a href="peach.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Peach Page →
+              Peach Page â†’
             </a>
           </div>
         </div>
@@ -646,15 +678,15 @@
       <!-- 19. Grape Juice -->
       <div class="fruit-card recipe-item juice-item" style="border-top: 3px solid #f59e0b;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">🍹 Cold-Pressed Juice</span>
-          🍇
+          <span class="fruit-card-badge badge" style="background:#f59e0b; color:#fff;">ðŸ¹ Cold-Pressed Juice</span>
+          ðŸ‡
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Concord Royal Grape Crush</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="grape.html" style="color: #38bdf8; font-weight:600;">Grape →</a>
+            Base Fruit: <a href="grape.html" style="color: #38bdf8; font-weight:600;">Grape â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Deep wine-like richness with piney herbal notes</em><br>
@@ -669,7 +701,7 @@
               Order ($5.25)
             </button>
             <a href="grape.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Grape Page →
+              Grape Page â†’
             </a>
           </div>
         </div>
@@ -678,15 +710,15 @@
       <!-- 20. Grape Salad -->
       <div class="fruit-card recipe-item salad-item" style="border-top: 3px solid #84cc16;">
         <div class="fruit-card-banner">
-          <span class="fruit-card-badge badge badge-green">🥗 Gourmet Salad</span>
-          🍇
+          <span class="fruit-card-badge badge badge-green">ðŸ¥— Gourmet Salad</span>
+          ðŸ‡
         </div>
         <div class="fruit-card-body">
           <div class="fruit-card-title">
             <span>Roasted Grape & Arugula Salad</span>
           </div>
           <p style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 0.4rem;">
-            Base Fruit: <a href="grape.html" style="color: #38bdf8; font-weight:600;">Grape →</a>
+            Base Fruit: <a href="grape.html" style="color: #38bdf8; font-weight:600;">Grape â†’</a>
           </p>
           <p class="fruit-card-desc">
             <em>Rich, caramelized, earthy, and tangy</em><br>
@@ -701,7 +733,7 @@
               Order ($11.20)
             </button>
             <a href="grape.html" class="btn btn-primary" style="font-size:0.82rem;">
-              Grape Page →
+              Grape Page â†’
             </a>
           </div>
         </div>
@@ -713,7 +745,7 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">🍍 Fruits Emporium</p>
+      <p style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">ðŸ Fruits Emporium</p>
       <p>10 Fresh Fruit Categories, Handcrafted Cold-Pressed Juices & Gourmet Fruit Salads.</p>
     </div>
   </footer>
@@ -744,3 +776,4 @@
   </script>
 </body>
 </html>
+
