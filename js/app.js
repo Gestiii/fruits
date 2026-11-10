@@ -173,3 +173,72 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+
+// ==========================================
+// HIGH-INTENT FRUIT TRACKER -> n8n -> SQL
+// ==========================================
+(function() {
+  const pagePath = window.location.pathname;
+  const fruitName = pagePath.split('/').pop().replace('.html', '') || 'home';
+  const isFruit = !['index', '', 'recipes', 'analytics-tester'].includes(fruitName);
+
+  let timeSpent = 0;
+  let maxScroll = 0;
+  let alreadySent = false;
+
+  // Track time on page
+  setInterval(() => {
+    timeSpent += 1;
+    checkIntent();
+  }, 1000);
+
+  // Track scroll depth
+  window.addEventListener('scroll', () => {
+    const scroll = Math.round(((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight) * 100);
+    if (scroll > maxScroll) maxScroll = scroll;
+    checkIntent();
+  });
+
+  // Track any button or link click
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('button, a');
+    if (btn) {
+      const btnText = (btn.innerText || 'button').trim().substring(0, 50);
+      sendTrigger('clicked_button', btnText);
+    }
+  });
+
+  function checkIntent() {
+    // If user spent > 25 seconds and scrolled > 60% of a fruit page
+    if (isFruit && timeSpent >= 25 && maxScroll >= 60) {
+      sendTrigger('high_intent_reading', 'scrolled_and_read');
+    }
+  }
+
+  function sendTrigger(eventType, details) {
+    if (alreadySent && eventType === 'high_intent_reading') return;
+    alreadySent = true;
+
+    const email = localStorage.getItem('user_email') || '';
+    const anonId = (window.posthog && posthog.get_distinct_id) ? posthog.get_distinct_id() : 'anon_' + Math.random().toString(36).substring(2, 9);
+
+    fetch('https://wise-melons-design.loca.lt/webhook/site-event', {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Bypass-Tunnel-Reminder': 'true'
+      },
+      body: JSON.stringify({
+        user_email: email,
+        distinct_id: anonId,
+        fruit: fruitName,
+        event: eventType,
+        details: details,
+        time_spent: timeSpent,
+        scroll_percent: maxScroll,
+        page: pagePath,
+        timestamp: new Date().toISOString()
+      })
+    }).catch(console.error);
+  }
+})();
