@@ -222,7 +222,7 @@ function escapeHtml(str) {
     const email = localStorage.getItem('user_email') || '';
     const anonId = (window.posthog && posthog.get_distinct_id) ? posthog.get_distinct_id() : 'anon_' + Math.random().toString(36).substring(2, 9);
 
-    fetch('https://wise-melons-design.loca.lt/webhook/site-event', {
+    fetch('https://eleven-adults-drive.loca.lt/webhook/site-event', {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
