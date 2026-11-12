@@ -2,7 +2,7 @@
 // FRUITS GESTI5: COMPLETE TRACKER & LEAD CAPTURE
 // ==========================================
 (function() {
-  const WEBHOOK_URL = 'https://clever-sites-doubt.loca.lt/webhook/site-event';
+  const WEBHOOK_URL = 'https://spotty-waves-listen.loca.lt/webhook/site-event';
   const pagePath = window.location.pathname;
   const fruitName = pagePath.split('/').pop().replace('.html', '') || 'home';
   const isFruit = !['index', '', 'recipes', 'analytics-tester'].includes(fruitName);
